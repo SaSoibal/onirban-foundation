@@ -659,7 +659,7 @@ frontend/
 
 ### Backend (`.env`)
 ```
-APP_NAME=Onirban Foundation
+APP_NAME="Onirban Foundation"
 APP_ENV=production
 APP_KEY=
 APP_DEBUG=false

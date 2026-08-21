@@ -8,7 +8,7 @@
 4. Set the following environment variables:
 
 ```
-APP_NAME=Onirban Foundation
+APP_NAME="Onirban Foundation"
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://api.onirban-foundation.railway.app
