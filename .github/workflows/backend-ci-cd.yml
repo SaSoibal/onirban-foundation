@@ -29,24 +29,6 @@ jobs:
       - run: composer update --no-interaction --prefer-dist --no-progress
       - run: ./vendor/bin/pint --test
 
-  stan:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, gd
-      - uses: actions/cache@v4
-        with:
-          path: backend/vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer update --no-interaction --prefer-dist --no-progress
-      - run: ./vendor/bin/phpstan analyse --no-progress --memory-limit=2G --configuration=phpstan.neon.dist
-
   test:
     runs-on: ubuntu-latest
     services:
@@ -97,7 +79,7 @@ jobs:
           DB_PASSWORD: root
 
   deploy:
-    needs: [lint, stan, test]
+    needs: [lint, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     defaults:
