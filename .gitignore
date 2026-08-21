@@ -1,0 +1,81 @@
+# Dependencies
+/node_modules
+/vendor
+/public/hot
+/public/storage
+/storage/*.key
+/.env
+/.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build outputs
+/dist
+/build
+/public/build
+/public/css
+/public/js
+
+# Test coverage
+/coverage
+/coverage.clover
+/clover.xml
+
+# Logs
+*.log
+/storage/logs/*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env.local
+.env.*.local
+
+# Cache
+/cache
+bootstrap/cache/*.php
+/storage/framework/cache/*
+
+# Session
+/storage/framework/sessions/*
+
+# Uploads (keep structure, ignore actual files)
+/public/storage/app/public/*
+!/public/storage/app/public/.gitignore
+
+# Composer
+composer.lock
+
+# NPM
+package-lock.json
+
+# Laravel specific
+/public/mix-manifest.json
+/public/hot
+
+# Testing
+.phpunit.result.cache
+/phpunit.xml
+
+# Misc
+/README.md.bak
+*.bak
