@@ -27,6 +27,7 @@ jobs:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
       - run: composer install --no-interaction --prefer-dist --no-progress
+      - run: composer dump-autoload
       - run: ./vendor/bin/pint --test
 
   test:
@@ -59,6 +60,7 @@ jobs:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
       - run: composer install --no-interaction --prefer-dist --no-progress
+      - run: composer dump-autoload
       - run: cp .env.testing .env
       - run: php artisan key:generate --force
       - run: php artisan migrate --force --env=testing
@@ -95,7 +97,7 @@ jobs:
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer update --no-dev --no-interaction --prefer-dist --no-progress
+      - run: composer install --no-dev --no-interaction --prefer-dist --no-progress
       - uses: railwayapp/railway-action@v1
         with:
           railway-token: ${{ secrets.RAILWAY_TOKEN }}

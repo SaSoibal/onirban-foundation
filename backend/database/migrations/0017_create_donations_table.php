@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('donations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
+            $table->string('donor_name');
+            $table->string('donor_email')->nullable();
+            $table->string('donor_phone')->nullable();
+            $table->decimal('amount', 12, 2);
+            $table->string('currency', 3)->default('BDT');
+            $table->enum('payment_method', ['cash', 'bank_transfer', 'online', 'check'])->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->text('message')->nullable();
+            $table->enum('status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
+            $table->timestamp('donated_at')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('donations');
+    }
+};
