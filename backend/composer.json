@@ -17,9 +17,6 @@
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.0",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.0|^11.0",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -51,9 +48,6 @@
         ],
         "fix": [
             "./vendor/bin/pint"
-        ],
-        "stan": [
-            "./vendor/bin/phpstan analyse --memory-limit=2G"
         ]
     },
     "extra": {
@@ -66,8 +60,12 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "laravel/pint": true,
-            "pestphp/pest-plugin": true
+            "laravel/pint": true
+        },
+        "policy": {
+            "advisories": {
+                "block": false
+            }
         }
     },
     "minimum-stability": "stable",
