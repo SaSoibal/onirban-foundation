@@ -45,7 +45,7 @@ jobs:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
       - run: composer update --no-interaction --prefer-dist --no-progress
-      - run: ./vendor/bin/phpstan analyse --no-progress --memory-limit=2G
+      - run: ./vendor/bin/phpstan analyse --no-progress --memory-limit=2G --configuration=phpstan.neon.dist
 
   test:
     runs-on: ubuntu-latest
