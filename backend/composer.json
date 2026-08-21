@@ -38,9 +38,6 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --provider=\"Spatie\\Permission\\PermissionServiceProvider\""
-        ],
         "test": [
             "@php artisan test"
         ],

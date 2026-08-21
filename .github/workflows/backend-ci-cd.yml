@@ -26,7 +26,7 @@ jobs:
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer update --no-interaction --prefer-dist --no-progress
+      - run: composer install --no-interaction --prefer-dist --no-progress
       - run: ./vendor/bin/pint --test
 
   test:
@@ -58,7 +58,7 @@ jobs:
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer update --no-interaction --prefer-dist --no-progress
+      - run: composer install --no-interaction --prefer-dist --no-progress
       - run: cp .env.testing .env
       - run: php artisan key:generate --force
       - run: php artisan migrate --force --env=testing
