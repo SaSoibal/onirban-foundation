@@ -3,15 +3,15 @@
 ## 1. Routing Strategy
 
 ### Recommended: BrowserRouter + 404.html Fallback
-- Use `react-router-dom` `BrowserRouter` with `basename="/onirban-foundation-"`
-- Deploy `404.html` to GitHub Pages root that redirects all unmatched paths to `/onirban-foundation-/index.html`
+- Use `react-router-dom` `BrowserRouter` with `basename="/onirban-foundation"`
+- Deploy `404.html` to GitHub Pages root that redirects all unmatched paths to `/onirban-foundation/index.html`
 - Enables clean URLs (no `#` in URLs)
 - SEO-friendly for public pages
 
 ### Alternative: HashRouter
-- Use `HashRouter` with `basename="/onirban-foundation-"`
+- Use `HashRouter` with `basename="/onirban-foundation"`
 - No 404.html required
-- URLs contain `#` (e.g., `https://sasoibal.github.io/onirban-foundation-#/programs`)
+- URLs contain `#` (e.g., `https://sasoibal.github.io/onirban-foundation#/programs`)
 - Simpler for GitHub Pages but less clean
 
 ### CORS Configuration
@@ -241,10 +241,10 @@ src/
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=/onirban-foundation-/" />
+    <meta http-equiv="refresh" content="0; url=/onirban-foundation/" />
     <script>
-      const path = location.pathname.replace(/^\/onirban-foundation-/, '') || '/';
-      location.replace('/onirban-foundation-/#/admin' + path);
+      const path = location.pathname.replace(/^\/onirban-foundation/, '') || '/';
+      location.replace('/onirban-foundation/#/admin' + path);
     </script>
   </head>
 </html>
@@ -253,7 +253,7 @@ src/
 **`src/index.jsx`:**
 ```jsx
 import { BrowserRouter } from 'react-router-dom';
-<BrowserRouter basename="/onirban-foundation-">
+<BrowserRouter basename="/onirban-foundation">
   <App />
 </BrowserRouter>
 ```
@@ -263,7 +263,7 @@ import { BrowserRouter } from 'react-router-dom';
 **`src/index.jsx`:**
 ```jsx
 import { HashRouter } from 'react-router-dom';
-<HashRouter basename="/onirban-foundation-">
+<HashRouter basename="/onirban-foundation">
   <App />
 </HashRouter>
 ```
@@ -333,7 +333,7 @@ import { HashRouter } from 'react-router-dom';
 
 ```
 VITE_API_BASE_URL=https://api.onirban-foundation.railway.app/api
-VITE_APP_URL=https://sasoibal.github.io/onirban-foundation-
+VITE_APP_URL=https://sasoibal.github.io/onirban-foundation
 VITE_SENTRY_DSN= (optional)
 ```
 
@@ -344,5 +344,5 @@ VITE_SENTRY_DSN= (optional)
 - Build command: `npm run build`
 - Output folder: `dist/`
 - GitHub Pages deployment via `gh-pages` branch or GitHub Actions
-- `basename` must match repository name exactly: `/onirban-foundation-`
+- `basename` must match repository name exactly: `/onirban-foundation`
 - Ensure all internal links use React Router `<Link to="...">` not `<a href="...">`

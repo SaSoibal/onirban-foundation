@@ -9,9 +9,9 @@
 **Database:** MySQL 8+  
 **Auth:** Laravel Sanctum (SPA token-based)  
 **RBAC:** spatie/laravel-permission  
-**Frontend URL:** https://sasoibal.github.io/onirban-foundation-/  
+**Frontend URL:** https://sasoibal.github.io/onirban-foundation/  
 **API Base URL:** https://api.onirban-foundation.railway.app/api  
-**GitHub Repo:** https://github.com/SaSoibal/onirban-foundation-.git  
+**GitHub Repo:** https://github.com/SaSoibal/onirban-foundation.git  
 
 ## 2. Core Functional Modules (13+)
 

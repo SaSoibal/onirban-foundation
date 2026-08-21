@@ -12,8 +12,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/SaSoibal/onirban-foundation-.git
-cd onirban-foundation-/backend
+git clone https://github.com/SaSoibal/onirban-foundation.git
+cd onirban-foundation/backend
 
 # Install dependencies
 composer install
@@ -46,7 +46,7 @@ php artisan serve
 ## Frontend Setup
 
 ```bash
-cd onirban-foundation-/frontend
+cd onirban-foundation/frontend
 
 # Install dependencies
 npm install

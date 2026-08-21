@@ -73,5 +73,5 @@ Backend: lint → stan → test → deploy to Railway
 Frontend: lint → test → build → deploy to GitHub Pages
     ↓
 Live at https://api.onirban-foundation.railway.app
-Live at https://sasoibal.github.io/onirban-foundation-/
+Live at https://sasoibal.github.io/onirban-foundation/
 ```

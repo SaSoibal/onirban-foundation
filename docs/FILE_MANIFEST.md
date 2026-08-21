@@ -4,7 +4,7 @@
 
 ### 1.1 Root Level
 ```
-onirban-foundation-/
+onirban-foundation/
 ├── backend/
 ├── frontend/
 ├── docs/
@@ -690,7 +690,7 @@ SESSION_DOMAIN=.sasoibal.github.io
 ### Frontend (`.env`)
 ```
 VITE_API_BASE_URL=https://api.onirban-foundation.railway.app/api
-VITE_APP_URL=https://sasoibal.github.io/onirban-foundation-
+VITE_APP_URL=https://sasoibal.github.io/onirban-foundation
 ```
 
 ---

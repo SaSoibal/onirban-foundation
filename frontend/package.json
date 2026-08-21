@@ -1,9 +1,9 @@
 {
-  "name": "onirban-foundation-frontend",
+  "name": "onirban-foundationfrontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sasoibal.github.io/onirban-foundation-/",
+  "homepage": "https://sasoibal.github.io/onirban-foundation/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

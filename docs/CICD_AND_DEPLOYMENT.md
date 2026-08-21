@@ -3,7 +3,7 @@
 ## 1. Repository Structure
 
 ```
-onirban-foundation-/
+onirban-foundation/
 ├── backend/
 │   ├── app/
 │   ├── bootstrap/
@@ -259,13 +259,13 @@ jobs:
 
 ### 5.1 Create Railway Project
 1. Go to https://railway.app/new
-2. Create new project `onirban-foundation-api`
+2. Create new project `onirban-foundationapi`
 3. Add MySQL plugin (Railway will provision a MySQL instance)
 4. Note the MySQL connection details from Railway dashboard
 
 ### 5.2 Connect GitHub Repo
 1. In Railway project, go to **Settings → GitHub**
-2. Connect repository `SaSoibal/onirban-foundation-`
+2. Connect repository `SaSoibal/onirban-foundation`
 3. Select `backend` as service root directory
 
 ### 5.3 Environment Variables (Railway)
@@ -334,7 +334,7 @@ If using BrowserRouter (recommended), add `frontend/public/404.html`:
     <script>
       (function() {
         var path = window.location.pathname;
-        var base = '/onirban-foundation-';
+        var base = '/onirban-foundation';
         var relative = path.replace(base, '') || '/';
         window.location.replace(base + '/#' + relative);
       })();
@@ -365,13 +365,13 @@ mysqldump -h <host> -u <user> -p <database> > backup.sql
 ## 8. Step-by-Step Deployment Checklist
 
 ### Phase 1: Initial Setup
-- [ ] Create GitHub repo: `SaSoibal/onirban-foundation-`
+- [ ] Create GitHub repo: `SaSoibal/onirban-foundation`
 - [ ] Clone repo locally
 - [ ] Create folder structure: `backend/`, `frontend/`, `docs/`, `.github/workflows/`
 - [ ] Push initial structure to GitHub
 
 ### Phase 2: Backend Deployment
-- [ ] Create Railway project `onirban-foundation-api`
+- [ ] Create Railway project `onirban-foundationapi`
 - [ ] Add MySQL plugin to Railway
 - [ ] Connect Railway to GitHub repo
 - [ ] Set Railway environment variables
@@ -383,7 +383,7 @@ mysqldump -h <host> -u <user> -p <database> > backup.sql
 - [ ] Set frontend environment variable: `VITE_API_BASE_URL=https://api.onirban-foundation.railway.app/api`
 - [ ] Push frontend code to trigger GitHub Actions
 - [ ] Verify GitHub Actions run and deploy to `gh-pages` branch
-- [ ] Verify site at `https://sasoibal.github.io/onirban-foundation-/`
+- [ ] Verify site at `https://sasoibal.github.io/onirban-foundation/`
 - [ ] Test CORS by making API call from frontend
 
 ### Phase 4: CI/CD Verification

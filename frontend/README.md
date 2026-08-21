@@ -47,5 +47,5 @@ Frontend is deployed to GitHub Pages via GitHub Actions.
 
 ```
 VITE_API_BASE_URL=https://api.onirban-foundation.railway.app/api
-VITE_APP_URL=https://sasoibal.github.io/onirban-foundation-
+VITE_APP_URL=https://sasoibal.github.io/onirban-foundation
 ```

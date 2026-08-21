@@ -8,7 +8,7 @@
 
 **Full-stack NGO platform with blood donation module, role-based admin panel, and automated CI/CD.**
 
-🌐 **Live Demo:** https://sasoibal.github.io/onirban-foundation-  
+🌐 **Live Demo:** https://sasoibal.github.io/onirban-foundation  
 🔌 **API:** https://api.onirban-foundation.railway.app/api
 
 ---
@@ -36,7 +36,7 @@
 ## Project Structure
 
 ```
-onirban-foundation-/
+onirban-foundation/
 ├── backend/           # Laravel API
 ├── frontend/          # React SPA
 ├── docs/              # Documentation
@@ -108,7 +108,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Support
 
-For issues and feature requests, please use the [GitHub Issues](https://github.com/SaSoibal/onirban-foundation-/issues) tab.
+For issues and feature requests, please use the [GitHub Issues](https://github.com/SaSoibal/onirban-foundation/issues) tab.
 
 ---
 
