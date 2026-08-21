@@ -1,16 +1,9 @@
 <?php
 
-return [
+use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\VerifyCsrfToken;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Sanctum Configuration
-    |--------------------------------------------------------------------------
-    |
-    | This file contains the configuration for Laravel Sanctum. Sanctum provides
-    | a lightweight authentication system for SPAs (single page applications).
-    |
-    */
+return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
@@ -25,8 +18,8 @@ return [
     'token_prefix' => '',
 
     'middleware' => [
-        'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
-        'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => VerifyCsrfToken::class,
+        'encrypt_cookies' => EncryptCookies::class,
     ],
 
 ];

@@ -24,7 +24,7 @@ class BloodRequestController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('requester_name', 'like', "%{$search}%")
-                  ->orWhere('hospital_name', 'like', "%{$search}%");
+                ->orWhere('hospital_name', 'like', "%{$search}%");
         }
 
         $requests = $query->orderByDesc('created_at')->paginate(15);

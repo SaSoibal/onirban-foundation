@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ActivityLog;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ActivityLog;
 
 class LogActivity
 {
@@ -19,12 +19,12 @@ class LogActivity
         $response = $next($request);
 
         $user = Auth::user();
-        if (!$user) {
+        if (! $user) {
             return $response;
         }
 
         $path = $request->path();
-        if (str_starts_with($path, 'api/') && !in_array($path, $this->except)) {
+        if (str_starts_with($path, 'api/') && ! in_array($path, $this->except)) {
             $method = $request->method();
             if (in_array($method, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
                 ActivityLog::create([
@@ -105,6 +105,7 @@ class LogActivity
                 $input[$key] = '***';
             }
         }
+
         return $input;
     }
 }

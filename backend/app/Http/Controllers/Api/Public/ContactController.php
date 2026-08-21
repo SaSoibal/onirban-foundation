@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Public;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ContactMessageResource;
 use App\Http\Requests\Api\Public\ContactMessageRequest;
+use App\Http\Resources\ContactMessageResource;
 use App\Models\ContactMessage;
 
 class ContactController extends Controller

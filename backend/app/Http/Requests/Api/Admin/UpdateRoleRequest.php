@@ -16,7 +16,7 @@ class UpdateRoleRequest extends FormRequest
         $role = $this->route('role');
 
         return [
-            'name' => ['nullable', 'string', 'max:255', 'unique:roles,name,' . $role?->id],
+            'name' => ['nullable', 'string', 'max:255', 'unique:roles,name,'.$role?->id],
             'permissions' => ['nullable', 'array', 'min:1'],
             'permissions.*' => ['integer', 'exists:permissions,id'],
         ];

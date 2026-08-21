@@ -13,7 +13,7 @@ class GalleryCategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'created_by' => $this->whenLoaded('creator', fn() => new UserResource($this->creator)),
+            'created_by' => $this->whenLoaded('creator', fn () => new UserResource($this->creator)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

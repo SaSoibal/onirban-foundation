@@ -16,7 +16,7 @@ class UpdatePageRequest extends FormRequest
         $page = $this->route('page');
 
         return [
-            'slug' => ['nullable', 'string', 'max:255', 'unique:pages,slug,' . $page?->id],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:pages,slug,'.$page?->id],
             'title' => ['nullable', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
             'excerpt' => ['nullable', 'string', 'max:500'],

@@ -75,6 +75,7 @@ class MediaController extends Controller
         if (str_starts_with($mimeType, 'audio/')) {
             return 'audio';
         }
+
         return 'document';
     }
 }

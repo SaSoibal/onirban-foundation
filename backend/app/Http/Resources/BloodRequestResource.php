@@ -21,7 +21,7 @@ class BloodRequestResource extends JsonResource
             'reason' => $this->reason,
             'status' => $this->status,
             'assigned_donor_id' => $this->assigned_donor_id,
-            'assigned_donor' => $this->whenLoaded('assignedDonor', fn() => new BloodDonorResource($this->assignedDonor)),
+            'assigned_donor' => $this->whenLoaded('assignedDonor', fn () => new BloodDonorResource($this->assignedDonor)),
             'notes' => $this->when($request->user(), $this->notes),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

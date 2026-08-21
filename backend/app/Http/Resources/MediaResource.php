@@ -18,7 +18,7 @@ class MediaResource extends JsonResource
             'mime_type' => $this->mime_type,
             'collection' => $this->collection,
             'sort_order' => $this->sort_order,
-            'created_by' => $this->whenLoaded('creator', fn() => new UserResource($this->creator)),
+            'created_by' => $this->whenLoaded('creator', fn () => new UserResource($this->creator)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

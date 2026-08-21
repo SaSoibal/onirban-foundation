@@ -20,7 +20,7 @@ class TestimonialController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('content', 'like', "%{$search}%");
+                ->orWhere('content', 'like', "%{$search}%");
         }
 
         $testimonials = $query->orderByDesc('created_at')->paginate(15);

@@ -21,7 +21,7 @@ class PageController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('title', 'like', "%{$search}%")
-                  ->orWhere('slug', 'like', "%{$search}%");
+                ->orWhere('slug', 'like', "%{$search}%");
         }
 
         $pages = $query->orderByDesc('created_at')->paginate(15);

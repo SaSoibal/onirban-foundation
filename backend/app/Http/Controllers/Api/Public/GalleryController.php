@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Public;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GalleryResource;
 use App\Http\Resources\GalleryCategoryResource;
+use App\Http\Resources\GalleryResource;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;

@@ -17,7 +17,7 @@ class UpdateUserRequest extends FormRequest
 
         return [
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'email', 'max:255', 'unique:users,email,' . $user?->id],
+            'email' => ['nullable', 'email', 'max:255', 'unique:users,email,'.$user?->id],
             'password' => ['nullable', 'string', 'min:8'],
             'phone' => ['nullable', 'string', 'max:20'],
             'avatar' => ['nullable', 'image', 'max:2048'],

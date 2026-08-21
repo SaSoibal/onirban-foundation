@@ -19,7 +19,7 @@ class TeamMemberResource extends JsonResource
             'phone' => $this->phone,
             'sort_order' => $this->sort_order,
             'status' => $this->status,
-            'created_by' => $this->whenLoaded('creator', fn() => new UserResource($this->creator)),
+            'created_by' => $this->whenLoaded('creator', fn () => new UserResource($this->creator)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

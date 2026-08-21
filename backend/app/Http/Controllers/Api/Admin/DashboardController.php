@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardStatsResource;
+use App\Models\ActivityLog;
 use App\Models\BloodDonor;
 use App\Models\BloodRequest;
 use App\Models\ContactMessage;
 use App\Models\Donation;
 use App\Models\Volunteer;
-use App\Models\ActivityLog;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {

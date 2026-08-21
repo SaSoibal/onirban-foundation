@@ -18,7 +18,7 @@ class ContactMessageResource extends JsonResource
             'message' => $this->message,
             'status' => $this->status,
             'replied_at' => $this->replied_at,
-            'replied_by' => $this->whenLoaded('replier', fn() => new UserResource($this->replier)),
+            'replied_by' => $this->whenLoaded('replier', fn () => new UserResource($this->replier)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

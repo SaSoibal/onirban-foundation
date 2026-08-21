@@ -17,7 +17,7 @@ class UpdateProgramRequest extends FormRequest
 
         return [
             'title' => ['nullable', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255', 'unique:programs,slug,' . $program?->id],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:programs,slug,'.$program?->id],
             'description' => ['nullable', 'string'],
             'short_description' => ['nullable', 'string', 'max:500'],
             'image' => ['nullable', 'image', 'max:2048'],

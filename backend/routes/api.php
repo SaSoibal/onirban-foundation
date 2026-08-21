@@ -1,34 +1,33 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\Public\PageController;
-use App\Http\Controllers\Api\Public\ProgramController;
-use App\Http\Controllers\Api\Public\BloodDonorController;
-use App\Http\Controllers\Api\Public\BloodRequestController;
-use App\Http\Controllers\Api\Public\GalleryController;
-use App\Http\Controllers\Api\Public\TeamController;
-use App\Http\Controllers\Api\Public\EventController;
-use App\Http\Controllers\Api\Public\TestimonialController;
-use App\Http\Controllers\Api\Public\ContactController;
-use App\Http\Controllers\Api\Public\SettingsController;
-use App\Http\Controllers\Api\Public\PublicController;
-use App\Http\Controllers\Api\Admin\DashboardController;
-use App\Http\Controllers\Api\Admin\SettingController;
-use App\Http\Controllers\Api\Admin\PageController as AdminPageController;
-use App\Http\Controllers\Api\Admin\ProgramController as AdminProgramController;
+use App\Http\Controllers\Api\Admin\ActivityLogController;
 use App\Http\Controllers\Api\Admin\BloodDonorController as AdminBloodDonorController;
 use App\Http\Controllers\Api\Admin\BloodRequestController as AdminBloodRequestController;
-use App\Http\Controllers\Api\Admin\GalleryController as AdminGalleryController;
-use App\Http\Controllers\Api\Admin\TeamController as AdminTeamController;
-use App\Http\Controllers\Api\Admin\EventController as AdminEventController;
-use App\Http\Controllers\Api\Admin\TestimonialController as AdminTestimonialController;
-use App\Http\Controllers\Api\Admin\VolunteerController;
 use App\Http\Controllers\Api\Admin\ContactController as AdminContactController;
-use App\Http\Controllers\Api\Admin\UserController;
-use App\Http\Controllers\Api\Admin\RoleController;
-use App\Http\Controllers\Api\Admin\ActivityLogController;
+use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Api\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Api\Admin\MediaController;
+use App\Http\Controllers\Api\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Api\Admin\ProgramController as AdminProgramController;
+use App\Http\Controllers\Api\Admin\RoleController;
+use App\Http\Controllers\Api\Admin\SettingController;
+use App\Http\Controllers\Api\Admin\TeamController as AdminTeamController;
+use App\Http\Controllers\Api\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\Admin\VolunteerController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Public\BloodDonorController;
+use App\Http\Controllers\Api\Public\BloodRequestController;
+use App\Http\Controllers\Api\Public\EventController;
+use App\Http\Controllers\Api\Public\GalleryController;
+use App\Http\Controllers\Api\Public\PageController;
+use App\Http\Controllers\Api\Public\ProgramController;
+use App\Http\Controllers\Api\Public\PublicController;
+use App\Http\Controllers\Api\Public\SettingsController;
+use App\Http\Controllers\Api\Public\TeamController;
+use App\Http\Controllers\Api\Public\TestimonialController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

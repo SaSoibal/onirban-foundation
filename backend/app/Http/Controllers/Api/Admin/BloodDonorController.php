@@ -33,8 +33,8 @@ class BloodDonorController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('phone', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                ->orWhere('phone', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%");
         }
 
         $donors = $query->orderByDesc('created_at')->paginate(15);
@@ -100,7 +100,7 @@ class BloodDonorController extends Controller
         $total = BloodDonor::count();
         $verified = BloodDonor::where('is_verified', true)->count();
         $byBloodGroup = BloodDonor::where('is_verified', true)
-            ->select('blood_group', \Illuminate\Support\Facades\DB::raw('count(*) as count'))
+            ->select('blood_group', DB::raw('count(*) as count'))
             ->groupBy('blood_group')
             ->pluck('count', 'blood_group');
 

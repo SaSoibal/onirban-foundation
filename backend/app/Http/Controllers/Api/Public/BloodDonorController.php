@@ -26,7 +26,7 @@ class BloodDonorController extends Controller
         if ($search = $request->query('search')) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('phone', 'like', "%{$search}%");
+                    ->orWhere('phone', 'like', "%{$search}%");
             });
         }
 
@@ -47,7 +47,7 @@ class BloodDonorController extends Controller
             ->where('is_verified', true)
             ->where(function ($q) {
                 $q->whereNull('last_donation_date')
-                  ->orWhereDate('last_donation_date', '<=', now()->subMonths(3)->toDateString());
+                    ->orWhereDate('last_donation_date', '<=', now()->subMonths(3)->toDateString());
             });
 
         if ($bloodGroup = $request->query('blood_group')) {

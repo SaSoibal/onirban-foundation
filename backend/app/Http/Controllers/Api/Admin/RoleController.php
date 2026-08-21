@@ -5,10 +5,6 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\StoreRoleRequest;
 use App\Http\Requests\Api\Admin\UpdateRoleRequest;
-use App\Http\Resources\UserResource;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -19,7 +15,7 @@ class RoleController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $roles->map(fn($role) => [
+            'data' => $roles->map(fn ($role) => [
                 'id' => $role->id,
                 'name' => $role->name,
                 'guard_name' => $role->guard_name,

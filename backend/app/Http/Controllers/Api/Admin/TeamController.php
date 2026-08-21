@@ -20,7 +20,7 @@ class TeamController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('designation', 'like', "%{$search}%");
+                ->orWhere('designation', 'like', "%{$search}%");
         }
 
         $members = $query->orderBy('sort_order')->paginate(20);

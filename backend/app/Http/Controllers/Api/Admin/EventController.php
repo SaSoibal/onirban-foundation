@@ -20,7 +20,7 @@ class EventController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('title', 'like', "%{$search}%")
-                  ->orWhere('location', 'like', "%{$search}%");
+                ->orWhere('location', 'like', "%{$search}%");
         }
 
         $events = $query->orderByDesc('event_date')->paginate(15);
@@ -62,7 +62,7 @@ class EventController extends Controller
     {
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255', 'unique:events,slug,' . $event->id],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:events,slug,'.$event->id],
             'description' => ['nullable', 'string'],
             'event_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:event_date'],

@@ -21,7 +21,7 @@ class BloodDonorResource extends JsonResource
             'photo' => $this->photo,
             'nid_number' => $this->when($request->user(), $this->nid_number),
             'is_verified' => $this->is_verified,
-            'verified_by' => $this->whenLoaded('verifier', fn() => new UserResource($this->verifier)),
+            'verified_by' => $this->whenLoaded('verifier', fn () => new UserResource($this->verifier)),
             'verified_at' => $this->verified_at,
             'show_phone' => $this->when($request->user(), $this->show_phone),
             'show_district' => $this->when($request->user(), $this->show_district),

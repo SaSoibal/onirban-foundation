@@ -19,7 +19,7 @@ class VolunteerController extends Controller
 
         if ($search = $request->query('search')) {
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                ->orWhere('email', 'like', "%{$search}%");
         }
 
         $volunteers = $query->orderByDesc('created_at')->paginate(15);

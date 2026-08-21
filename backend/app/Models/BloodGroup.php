@@ -10,6 +10,7 @@ class BloodGroup extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
     public $timestamps = true;
 
     protected $hidden = ['pivot'];

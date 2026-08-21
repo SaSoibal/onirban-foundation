@@ -20,7 +20,7 @@ class EventResource extends JsonResource
             'image' => $this->image,
             'registration_url' => $this->registration_url,
             'status' => $this->status,
-            'created_by' => $this->whenLoaded('creator', fn() => new UserResource($this->creator)),
+            'created_by' => $this->whenLoaded('creator', fn () => new UserResource($this->creator)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

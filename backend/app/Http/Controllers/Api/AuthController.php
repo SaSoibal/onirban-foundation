@@ -17,7 +17,7 @@ class AuthController extends Controller
             'device_name' => ['nullable', 'string', 'max:255'],
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (! Auth::attempt($request->only('email', 'password'))) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
@@ -29,7 +29,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'data' => [
-                'user' => new \App\Http\Resources\UserResource($user),
+                'user' => new UserResource($user),
                 'token' => $token,
                 'token_type' => 'Bearer',
             ],
@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => new \App\Http\Resources\UserResource($request->user()->load('roles', 'permissions')),
+            'data' => new UserResource($request->user()->load('roles', 'permissions')),
         ]);
     }
 

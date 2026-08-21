@@ -20,8 +20,8 @@ class ProgramResource extends JsonResource
             'end_date' => $this->end_date,
             'location' => $this->location,
             'status' => $this->status,
-            'created_by' => $this->whenLoaded('creator', fn() => new UserResource($this->creator)),
-            'updated_by' => $this->whenLoaded('updater', fn() => new UserResource($this->updater)),
+            'created_by' => $this->whenLoaded('creator', fn () => new UserResource($this->creator)),
+            'updated_by' => $this->whenLoaded('updater', fn () => new UserResource($this->updater)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
