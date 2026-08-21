@@ -5,10 +5,10 @@
     "keywords": ["laravel", "sanctum", "spatie", "permission", "api"],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
-        "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
-        "spatie/laravel-permission": "^5.10",
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
+        "spatie/laravel-permission": "^6.0",
         "intervention/image": "^2.7"
     },
     "require-dev": {
@@ -16,11 +16,11 @@
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
+        "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^10.0|^11.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
@@ -64,7 +64,11 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "laravel/pint": true,
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
