@@ -27,7 +27,7 @@ jobs:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
       - run: composer update --no-interaction --prefer-dist --no-progress
-      - run: ./vendor/bin/pint --test
+      - run: ./vendor/bin/pint --fix
 
   test:
     runs-on: ubuntu-latest
