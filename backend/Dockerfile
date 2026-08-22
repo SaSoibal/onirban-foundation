@@ -23,9 +23,6 @@ RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-pr
 COPY . .
 
 RUN composer dump-autoload --no-scripts --no-dev --optimize && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
     chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 COPY nginx.conf /etc/nginx/nginx.conf
