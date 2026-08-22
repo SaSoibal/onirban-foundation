@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->enum('status', ['active', 'inactive', 'banned'])->default('active');
             $table->timestamp('last_login_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

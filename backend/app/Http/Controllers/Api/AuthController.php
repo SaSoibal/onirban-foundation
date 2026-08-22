@@ -25,7 +25,8 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $token = $user->createToken($request->device_name ?? 'web')->plainTextToken; // @phpstan-ignore-line
+        $user->load('roles', 'permissions'); // @phpstan-ignore-line
+        $token = $user->createToken($request->device_name ?? 'web')->plainTextToken;
 
         return response()->json([
             'success' => true,

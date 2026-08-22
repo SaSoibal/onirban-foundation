@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Volunteer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VolunteerFactory extends Factory

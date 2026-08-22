@@ -73,14 +73,14 @@ Route::post('/volunteers/register', [PublicController::class, 'registerVolunteer
 Route::post('/donations', [PublicController::class, 'storeDonation']);
 
 // Authenticated Routes
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:api')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/me', [AuthController::class, 'me']);
     Route::post('/auth/refresh', [AuthController::class, 'refresh']);
 });
 
 // Admin Routes
-Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
+Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
 
     // Settings

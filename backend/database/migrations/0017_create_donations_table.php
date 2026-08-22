@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->timestamp('donated_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

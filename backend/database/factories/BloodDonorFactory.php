@@ -27,7 +27,7 @@ class BloodDonorFactory extends Factory
             'verified_at' => fake()->optional()->dateTime(),
             'show_phone' => fake()->boolean(),
             'show_district' => fake()->boolean(),
-            'status' => fake()->randomElement(['active', 'inactive', 'pending']),
+            'status' => fake()->randomElement(['active', 'inactive', 'suspended']),
         ];
     }
 

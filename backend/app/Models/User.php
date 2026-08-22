@@ -61,6 +61,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function guardName(): string
+    {
+        return 'api';
+    }
+
+    protected function getDefaultGuardName(): string
+    {
+        return 'api';
+    }
+
     public function pages()
     {
         return $this->hasMany(Page::class, 'created_by');

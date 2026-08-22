@@ -73,6 +73,8 @@ class DashboardTest extends TestCase
 
     public function test_unauthenticated_user_cannot_access_dashboard()
     {
+        $this->app['auth']->forgetGuards();
+
         $response = $this->getJson('/api/admin/dashboard/stats');
 
         $response->assertStatus(401);

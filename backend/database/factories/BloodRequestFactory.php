@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\BloodDonor;
+use App\Models\BloodRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BloodRequestFactory extends Factory
