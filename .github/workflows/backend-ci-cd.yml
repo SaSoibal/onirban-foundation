@@ -85,9 +85,6 @@ jobs:
     needs: [lint, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    defaults:
-      run:
-        working-directory: backend
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -98,11 +95,18 @@ jobs:
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer install --no-dev --no-interaction --prefer-dist --no-progress
-      - uses: railwayapp/railway-action@v1
+
+      # Fixed: Replaced defaults working-directory with explicit cd commands to bypass railway action bug
+      - name: Install dependencies
+        run: cd backend && composer install --no-dev --no-interaction --prefer-dist --no-progress
+
+      # Fixed: Handled directory targeting natively using Railway's target-directory option
+      - name: Deploy to Railway
+        uses: railwayapp/railway-action@v1
         with:
           railway-token: ${{ secrets.RAILWAY_TOKEN }}
           service: onirban-api
+          target-directory: backend
         env:
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
           RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
