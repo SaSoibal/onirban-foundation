@@ -71,8 +71,11 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+      - name: Add .nojekyll to bypass Jekyll processing
+        run: touch frontend/dist/.nojekyll
+
       - name: Verify build output
-        run: ls -la frontend/dist
+        run: ls -la frontend/dist && cat frontend/dist/index.html | head -5
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
