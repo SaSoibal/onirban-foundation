@@ -169,22 +169,21 @@ jobs:
     needs:
       - lint
       - test
-
     runs-on: ubuntu-latest
-
     if: github.ref == 'refs/heads/main'
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          node-version: "20"
+          php-version: "8.2"
+          extensions: mbstring, bcmath, mysql, pdo_mysql, tokenizer, xml, ctype, json, curl, fileinfo, gd
+          tools: composer:v2
 
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
+      - name: Install dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist --no-progress
 
       - name: Deploy to Railway
         run: railway up --service onirban-foundation --ci
