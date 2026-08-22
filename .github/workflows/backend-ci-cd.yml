@@ -5,74 +5,141 @@ on:
     branches: [main]
     paths:
       - "backend/**"
+      - ".github/workflows/backend-ci-cd.yml"
+
   pull_request:
     branches: [main]
     paths:
       - "backend/**"
+
   workflow_dispatch:
 
 jobs:
+  # ============================================================
+  # LINT
+  # ============================================================
   lint:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: backend
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
           extensions: mbstring, bcmath, mysql, pdo_mysql, tokenizer, xml, ctype, json, curl, fileinfo, gd
-      - uses: actions/cache@v4
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer install --no-interaction --prefer-dist --no-progress
-      - run: composer dump-autoload
-      - run: ./vendor/bin/pint --test
+          restore-keys: |
+            ${{ runner.os }}-php-
 
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Generate autoload files
+        run: composer dump-autoload
+
+      - name: Run Laravel Pint
+        run: ./vendor/bin/pint --test
+
+  # ============================================================
+  # TEST
+  # ============================================================
   test:
     runs-on: ubuntu-latest
+
     services:
       mysql:
         image: mysql:8.0
+
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: onirban_test
+
         ports:
           - 3306:3306
+
         options: >-
-          --health-cmd="mysqladmin ping"
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=3
+          --health-retries=5
+
     defaults:
       run:
         working-directory: backend
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
           extensions: mbstring, bcmath, mysql, pdo_mysql, tokenizer, xml, ctype, json, curl, fileinfo, gd
+          tools: composer:v2
           coverage: xdebug
-      - uses: actions/cache@v4
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
-      - run: composer install --no-interaction --prefer-dist --no-progress
-      - run: composer dump-autoload
-      - run: cp .env.testing .env
-      - run: php artisan key:generate --force
-      - run: php artisan migrate --force
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: onirban_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-      - run: php artisan test --coverage
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Generate autoload files
+        run: composer dump-autoload
+
+      - name: Prepare testing environment
+        run: |
+          if [ -f .env.testing ]; then
+            cp .env.testing .env
+          else
+            cp .env.example .env
+          fi
+
+      - name: Generate application key
+        run: php artisan key:generate --force
+
+      - name: Ensure test directories exist
+        run: |
+          mkdir -p tests/Unit
+          mkdir -p tests/Feature
+
+      - name: Wait for MySQL
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h127.0.0.1 -uroot -proot --silent; then
+              echo "MySQL is ready"
+              exit 0
+            fi
+
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
+          echo "MySQL did not become ready"
+          exit 1
+
+      - name: Run database migrations
+        run: php artisan migrate --force
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
@@ -81,26 +148,52 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
 
+      - name: Run tests with coverage
+        run: php artisan test --coverage
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: onirban_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+
+  # ============================================================
+  # DEPLOY
+  # ============================================================
   deploy:
-    needs: [lint, test]
+    needs:
+      - lint
+      - test
+
     runs-on: ubuntu-latest
+
     if: github.ref == 'refs/heads/main'
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
           extensions: mbstring, bcmath, mysql, pdo_mysql, tokenizer, xml, ctype, json, curl, fileinfo, gd
-      - uses: actions/cache@v4
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
         with:
           path: backend/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-      # Fixed: Replaced defaults working-directory with explicit cd commands to bypass railway action bug
-      - name: Install dependencies
-        run: cd backend && composer install --no-dev --no-interaction --prefer-dist --no-progress
+      - name: Install production dependencies
+        working-directory: backend
+        run: composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader
 
-      # Fixed: Handled directory targeting natively using Railway's target-directory option
       - name: Deploy to Railway
         uses: railwayapp/railway-action@v1
         with:
