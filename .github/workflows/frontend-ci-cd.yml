@@ -86,3 +86,11 @@ jobs:
           force_orphan: true
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
+
+      - name: Verify GitHub Pages deployment
+        run: |
+          echo "Frontend deployed to: https://sasoibal.github.io/onirban-foundation/"
+          echo "If you see README instead of the app:"
+          echo "1. Go to Settings → Pages"
+          echo "2. Set Source to 'gh-pages' branch, / (root) folder"
+          echo "3. Save and wait 1-2 minutes"
