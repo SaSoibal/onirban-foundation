@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Donation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -29,7 +28,7 @@ class DonationFactory extends Factory
 
     public function completed(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'status' => 'completed',
         ]);
     }

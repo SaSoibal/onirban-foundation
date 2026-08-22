@@ -25,7 +25,7 @@ class ContactMessageFactory extends Factory
 
     public function new(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'status' => 'new',
         ]);
     }

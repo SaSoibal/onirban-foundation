@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\BloodDonor;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BloodRequestFactory extends Factory
@@ -29,7 +28,7 @@ class BloodRequestFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'status' => 'active',
         ]);
     }

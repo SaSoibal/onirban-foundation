@@ -33,7 +33,7 @@ class BloodDonorFactory extends Factory
 
     public function verified(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'is_verified' => true,
             'status' => 'active',
         ]);
@@ -41,7 +41,7 @@ class BloodDonorFactory extends Factory
 
     public function unverified(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'is_verified' => false,
             'status' => 'active',
         ]);
