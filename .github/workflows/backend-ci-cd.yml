@@ -187,8 +187,7 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        working-directory: backend
-        run: railway up --service onirban-foundation --ci
+        run: railway up --service onirban-foundation --ci --directory backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
