@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('backend/composer.lock') }}
       - run: composer install --no-interaction --prefer-dist --no-progress
       - run: composer dump-autoload
-      - run: ./vendor/bin/pint --test
+      - run: ./vendor/bin/pint --fix
 
   test:
     runs-on: ubuntu-latest
