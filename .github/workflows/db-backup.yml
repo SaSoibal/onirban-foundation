@@ -9,22 +9,27 @@ jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Install MySQL client
-        run: sudo apt-get install -y mysql-client
+        run: sudo apt-get update && sudo apt-get install -y mysql-client
 
-      - name: Run backup
-        run: |
-          mysqldump -h ${{ secrets.DB_HOST }} -u ${{ secrets.DB_USERNAME }} -p${{ secrets.DB_PASSWORD }} ${{ secrets.DB_DATABASE }} > backup.sql
-
-      - name: Upload to S3
-        uses: jakejarvis/s3-sync-action@master
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          args: --delete
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Dump database
+        env:
+          MYSQL_PWD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+        run: |
+          mkdir -p backups
+          mysqldump -h "$DB_HOST" -u "$DB_USERNAME" "$DB_DATABASE" | gzip > "backups/backup-$(date +%Y%m%d-%H%M%S).sql.gz"
+
+      - name: Upload backup to S3
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: './'
+        run: aws s3 cp backups/ "s3://$AWS_S3_BUCKET/backups/" --exclude "*" --include "*.sql.gz"
