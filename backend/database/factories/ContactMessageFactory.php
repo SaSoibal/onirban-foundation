@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ContactMessage;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +24,7 @@ class ContactMessageFactory extends Factory
         ];
     }
 
-    public function new(): static
+    public function unread(): static
     {
         return $this->state(fn (array $attributes) => [
             'status' => 'new',

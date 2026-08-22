@@ -15,7 +15,7 @@ class BloodDonorController extends Controller
             ->where('status', 'active')
             ->where('is_verified', true);
 
-        if ($bloodGroup = str_replace(' ', '+', (string) $request->query('blood_group'))) {
+        if ($bloodGroup = $request->query('blood_group')) {
             $query->where('blood_group', $bloodGroup);
         }
 
@@ -50,7 +50,7 @@ class BloodDonorController extends Controller
                     ->orWhereDate('last_donation_date', '<=', now()->subMonths(3)->toDateString());
             });
 
-        if ($bloodGroup = str_replace(' ', '+', (string) $request->query('blood_group'))) {
+        if ($bloodGroup = $request->query('blood_group')) {
             $query->where('blood_group', $bloodGroup);
         }
 

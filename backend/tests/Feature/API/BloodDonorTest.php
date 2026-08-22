@@ -47,7 +47,7 @@ class BloodDonorTest extends TestCase
         BloodDonor::factory()->create(['blood_group' => 'O+']);
         BloodDonor::factory()->create(['blood_group' => 'A+']);
 
-        $response = $this->getJson('/api/admin/blood-donors?blood_group=O+');
+        $response = $this->getJson('/api/admin/blood-donors?blood_group=O%2B');
 
         $response->assertStatus(200)
             ->assertJson([

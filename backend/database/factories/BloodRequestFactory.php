@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\BloodDonor;
 use App\Models\BloodRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +21,7 @@ class BloodRequestFactory extends Factory
             'deadline' => fake()->dateTimeBetween('+1 day', '+7 days'),
             'reason' => fake()->sentence(),
             'status' => fake()->randomElement(['pending', 'active', 'fulfilled', 'cancelled']),
-            'assigned_donor_id' => BloodDonor::factory(),
+            'assigned_donor_id' => null,
             'notes' => fake()->optional()->paragraph(),
         ];
     }

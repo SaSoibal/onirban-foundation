@@ -16,7 +16,7 @@ class BloodDonorController extends Controller
     {
         $query = BloodDonor::query();
 
-        if ($bloodGroup = str_replace(' ', '+', (string) $request->query('blood_group'))) { dd(bin2hex((string) $request->query('blood_group')), $request->query('blood_group'));
+        if ($bloodGroup = $request->query('blood_group')) {
             $query->where('blood_group', $bloodGroup);
         }
 
