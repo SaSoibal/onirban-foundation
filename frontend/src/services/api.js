@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.onirban-foundation.railway.app/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://onirban-foundation-production.up.railway.app/api',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
