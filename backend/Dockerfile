@@ -1,16 +1,19 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
+    nginx \
+    supervisor \
     libpng-dev \
-    libonig-dev \
-    libxml2-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    libxpm-dev \
     libzip-dev \
     zip \
     unzip \
     git \
     curl \
-    nginx \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring gd exif bcmath
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -26,7 +29,8 @@ RUN composer dump-autoload --no-scripts --no-dev --optimize && \
     chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY supervisord.conf /etc/supervisord.conf
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
