@@ -119,11 +119,6 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate --force
 
-      - name: Ensure test directories exist
-        run: |
-          mkdir -p tests/Unit
-          mkdir -p tests/Feature
-
       - name: Wait for MySQL
         run: |
           for i in {1..30}; do
@@ -139,25 +134,60 @@ jobs:
           echo "MySQL did not become ready"
           exit 1
 
-      - name: Run database migrations
-        run: php artisan migrate --force
+      - name: Run fresh database migrations
+        run: php artisan migrate:fresh --force
         env:
+          APP_ENV: testing
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: onirban_test
           DB_USERNAME: root
           DB_PASSWORD: root
+          CACHE_STORE: database
+
+      - name: Clear Laravel caches
+        run: |
+          php artisan config:clear
+          php artisan cache:clear
+        env:
+          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: onirban_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          CACHE_STORE: database
+
+      - name: Verify database tables
+        run: |
+          php artisan tinker --execute="
+            echo 'Cache table: ';
+            echo Schema::hasTable('cache') ? 'YES' : 'NO';
+            echo PHP_EOL;
+          "
+        env:
+          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: onirban_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          CACHE_STORE: database
 
       - name: Run tests with coverage
         run: php artisan test --coverage
         env:
+          APP_ENV: testing
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: onirban_test
           DB_USERNAME: root
           DB_PASSWORD: root
+          CACHE_STORE: database
 
   # ============================================================
   # DEPLOY
