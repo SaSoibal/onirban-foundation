@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
+    nginx \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -24,10 +25,11 @@ COPY . .
 RUN composer dump-autoload --no-scripts --no-dev --optimize && \
     php artisan config:cache && \
     php artisan route:cache && \
-    php artisan view:cache
+    php artisan view:cache && \
+    chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
-RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 8080
 
-CMD php artisan serve --host 0.0.0.0 --port $PORT
+CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
