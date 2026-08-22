@@ -144,38 +144,6 @@ jobs:
           DB_DATABASE: onirban_test
           DB_USERNAME: root
           DB_PASSWORD: root
-          CACHE_STORE: database
-
-      - name: Clear Laravel caches
-        run: |
-          php artisan config:clear
-          php artisan cache:clear
-        env:
-          APP_ENV: testing
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: onirban_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          CACHE_STORE: database
-
-      - name: Verify database tables
-        run: |
-          php artisan tinker --execute="
-            echo 'Cache table: ';
-            echo Schema::hasTable('cache') ? 'YES' : 'NO';
-            echo PHP_EOL;
-          "
-        env:
-          APP_ENV: testing
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: onirban_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          CACHE_STORE: database
 
       - name: Run tests with coverage
         run: php artisan test --coverage
@@ -187,7 +155,6 @@ jobs:
           DB_DATABASE: onirban_test
           DB_USERNAME: root
           DB_PASSWORD: root
-          CACHE_STORE: database
 
   # ============================================================
   # DEPLOY
