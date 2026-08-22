@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
 export default function BloodGroupFilter({ selected, onChange }) {

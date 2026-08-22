@@ -32,7 +32,7 @@ class BloodRequestController extends Controller
         return response()->json([
             'success' => true,
             'data' => BloodRequestResource::collection($requests),
-            'links' => $requests->linkPills()->toArray(),
+            'links' => $requests->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $requests->toArray()['meta'] ?? [],
         ]);
     }

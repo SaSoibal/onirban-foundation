@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\Admin;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
@@ -13,6 +14,7 @@ class UpdateUserRequest extends FormRequest
 
     public function rules(): array
     {
+        /** @var User|null $user */
         $user = $this->route('user');
 
         return [

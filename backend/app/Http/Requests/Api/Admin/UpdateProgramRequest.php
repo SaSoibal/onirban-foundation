@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\Admin;
 
+use App\Models\Program;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProgramRequest extends FormRequest
@@ -13,6 +14,7 @@ class UpdateProgramRequest extends FormRequest
 
     public function rules(): array
     {
+        /** @var Program|null $program */
         $program = $this->route('program');
 
         return [

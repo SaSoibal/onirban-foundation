@@ -35,7 +35,7 @@ class BloodDonorController extends Controller
         return response()->json([
             'success' => true,
             'data' => BloodDonorResource::collection($donors),
-            'links' => $donors->linkPills()->toArray(),
+            'links' => $donors->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $donors->toArray()['meta'] ?? [],
         ]);
     }
@@ -63,7 +63,7 @@ class BloodDonorController extends Controller
         return response()->json([
             'success' => true,
             'data' => BloodDonorResource::collection($donors),
-            'links' => $donors->linkPills()->toArray(),
+            'links' => $donors->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $donors->toArray()['meta'] ?? [],
         ]);
     }

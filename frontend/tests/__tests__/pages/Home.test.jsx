@@ -1,15 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from '../../context/AuthContext';
-import Home from '../../pages/public/Home';
+import { AuthProvider } from '../../../src/context/AuthContext';
+import Home from '../../../src/pages/public/Home';
 
 const renderWithProviders = (ui) => render(<BrowserRouter><AuthProvider>{ui}</AuthProvider></BrowserRouter>);
 
-jest.mock('../../services/api', () => ({
+jest.mock('../../../src/services/api', () => ({
   get: jest.fn(),
 }));
 
-import api from '../../services/api';
+import api from '../../../src/services/api';
 
 describe('Home', () => {
   test('renders hero heading', async () => {

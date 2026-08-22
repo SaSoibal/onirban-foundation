@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\ActivityLog;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class LogActivity
     {
         $response = $next($request);
 
+        /** @var User|null $user */
         $user = Auth::user();
         if (! $user) {
             return $response;
@@ -78,23 +80,16 @@ class LogActivity
 
     private function guessSubjectId(Request $request): ?int
     {
-        $id = $request->route('page')?->id
-            ?? $request->route('program')?->id
-            ?? $request->route('gallery')?->id
-            ?? $request->route('team')?->id
-            ?? $request->route('event')?->id
-            ?? $request->route('testimonial')?->id
-            ?? $request->route('donor')?->id
-            ?? $request->route('blood_request')?->id
-            ?? $request->route('volunteer')?->id
-            ?? $request->route('contact_message')?->id
-            ?? $request->route('donation')?->id
-            ?? $request->route('setting')?->id
-            ?? $request->route('user')?->id
-            ?? $request->route('role')?->id
-            ?? $request->route('media')?->id;
+        $routes = ['page', 'program', 'gallery', 'team', 'event', 'testimonial', 'donor', 'blood_request', 'volunteer', 'contact_message', 'donation', 'setting', 'user', 'role', 'media'];
 
-        return $id ? $id->id : null;
+        foreach ($routes as $param) {
+            $value = $request->route($param);
+            if (is_object($value) && isset($value->id)) {
+                return $value->id;
+            }
+        }
+
+        return null;
     }
 
     private function safeInput(Request $request): array

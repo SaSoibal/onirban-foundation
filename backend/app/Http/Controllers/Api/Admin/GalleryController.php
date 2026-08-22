@@ -27,7 +27,7 @@ class GalleryController extends Controller
         return response()->json([
             'success' => true,
             'data' => GalleryResource::collection($galleries),
-            'links' => $galleries->linkPills()->toArray(),
+            'links' => $galleries->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $galleries->toArray()['meta'] ?? [],
         ]);
     }

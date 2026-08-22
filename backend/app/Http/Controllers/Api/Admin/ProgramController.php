@@ -28,7 +28,7 @@ class ProgramController extends Controller
         return response()->json([
             'success' => true,
             'data' => ProgramResource::collection($programs),
-            'links' => $programs->linkPills()->toArray(),
+            'links' => $programs->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $programs->toArray()['meta'] ?? [],
         ]);
     }

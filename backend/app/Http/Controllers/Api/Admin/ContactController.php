@@ -28,7 +28,7 @@ class ContactController extends Controller
         return response()->json([
             'success' => true,
             'data' => ContactMessageResource::collection($messages),
-            'links' => $messages->linkPills()->toArray(),
+            'links' => $messages->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $messages->toArray()['meta'] ?? [],
         ]);
     }

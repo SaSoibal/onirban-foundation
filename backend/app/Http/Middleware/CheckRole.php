@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ class CheckRole
 {
     public function handle(Request $request, Closure $next, string ...$roles)
     {
+        /** @var User|null $user */
         $user = Auth::user();
 
         if (! $user) {

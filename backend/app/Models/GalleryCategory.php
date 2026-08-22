@@ -2,10 +2,24 @@
 
 namespace App\Models;
 
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int|null $created_by
+ * @property-read CarbonInterface|null $created_at
+ * @property-read CarbonInterface|null $updated_at
+ * @property-read CarbonInterface|null $deleted_at
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder query()
+ * @method static \Illuminate\Database\Eloquent\Builder orderBy(string $column, string $direction = 'asc')
+ * @method static int count()
+ */
 class GalleryCategory extends Model
 {
     use HasFactory, SoftDeletes;

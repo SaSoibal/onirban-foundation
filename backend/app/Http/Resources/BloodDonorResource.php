@@ -2,9 +2,33 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
+use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property-read int $id
+ * @property-read int|null $user_id
+ * @property-read string $name
+ * @property-read string|null $phone
+ * @property-read bool $show_phone
+ * @property-read string|null $email
+ * @property-read string $blood_group
+ * @property-read string|null $district
+ * @property-read bool $show_district
+ * @property-read CarbonInterface|null $last_donation_date
+ * @property-read string|null $photo
+ * @property-read string|null $nid_number
+ * @property-read bool $is_verified
+ * @property-read User|null $verifier
+ * @property-read CarbonInterface|null $verified_at
+ * @property-read string $status
+ * @property-read bool $is_eligible
+ * @property-read string|null $next_eligible_date
+ * @property-read CarbonInterface|null $created_at
+ * @property-read CarbonInterface|null $updated_at
+ */
 class BloodDonorResource extends JsonResource
 {
     public function toArray(Request $request): array

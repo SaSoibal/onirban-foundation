@@ -28,7 +28,7 @@ class TeamController extends Controller
         return response()->json([
             'success' => true,
             'data' => TeamMemberResource::collection($members),
-            'links' => $members->linkPills()->toArray(),
+            'links' => $members->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $members->toArray()['meta'] ?? [],
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Spatie\Permission\Models\Role;
 
 class UpdateRoleRequest extends FormRequest
 {
@@ -13,6 +14,7 @@ class UpdateRoleRequest extends FormRequest
 
     public function rules(): array
     {
+        /** @var Role|null $role */
         $role = $this->route('role');
 
         return [

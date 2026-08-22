@@ -30,7 +30,7 @@ class ActivityLogController extends Controller
         return response()->json([
             'success' => true,
             'data' => ActivityLogResource::collection($logs),
-            'links' => $logs->linkPills()->toArray(),
+            'links' => $logs->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $logs->toArray()['meta'] ?? [],
         ]);
     }

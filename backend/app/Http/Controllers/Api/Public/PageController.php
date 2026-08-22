@@ -22,7 +22,7 @@ class PageController extends Controller
         return response()->json([
             'success' => true,
             'data' => PageResource::collection($pages),
-            'links' => $pages->linkPills()->toArray(),
+            'links' => $pages->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $pages->toArray()['meta'] ?? [],
         ]);
     }

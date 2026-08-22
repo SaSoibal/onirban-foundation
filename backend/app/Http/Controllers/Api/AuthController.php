@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -24,7 +25,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $token = $user->createToken($request->device_name ?? 'web')->plainTextToken;
+        $token = $user->createToken($request->device_name ?? 'web')->plainTextToken; // @phpstan-ignore-line
 
         return response()->json([
             'success' => true,

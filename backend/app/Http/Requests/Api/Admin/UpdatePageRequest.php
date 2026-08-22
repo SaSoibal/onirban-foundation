@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\Admin;
 
+use App\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePageRequest extends FormRequest
@@ -13,6 +14,7 @@ class UpdatePageRequest extends FormRequest
 
     public function rules(): array
     {
+        /** @var Page|null $page */
         $page = $this->route('page');
 
         return [

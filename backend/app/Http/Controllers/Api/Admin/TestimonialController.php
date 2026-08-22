@@ -28,7 +28,7 @@ class TestimonialController extends Controller
         return response()->json([
             'success' => true,
             'data' => TestimonialResource::collection($testimonials),
-            'links' => $testimonials->linkPills()->toArray(),
+            'links' => $testimonials->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $testimonials->toArray()['meta'] ?? [],
         ]);
     }

@@ -2,9 +2,24 @@
 
 namespace App\Http\Resources;
 
+use App\Models\GalleryCategory;
+use App\Models\User;
+use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property-read int $id
+ * @property-read int $category_id
+ * @property-read GalleryCategory|null $category
+ * @property-read string $title
+ * @property-read string $image
+ * @property-read string|null $caption
+ * @property-read int $sort_order
+ * @property-read User|null $creator
+ * @property-read CarbonInterface|null $created_at
+ * @property-read CarbonInterface|null $updated_at
+ */
 class GalleryResource extends JsonResource
 {
     public function toArray(Request $request): array

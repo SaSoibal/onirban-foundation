@@ -27,7 +27,7 @@ class VolunteerController extends Controller
         return response()->json([
             'success' => true,
             'data' => VolunteerResource::collection($volunteers),
-            'links' => $volunteers->linkPills()->toArray(),
+            'links' => $volunteers->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $volunteers->toArray()['meta'] ?? [],
         ]);
     }

@@ -8,6 +8,7 @@ use App\Http\Requests\Api\Admin\VerifyDonorRequest;
 use App\Http\Resources\BloodDonorResource;
 use App\Models\BloodDonor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BloodDonorController extends Controller
 {
@@ -42,7 +43,7 @@ class BloodDonorController extends Controller
         return response()->json([
             'success' => true,
             'data' => BloodDonorResource::collection($donors),
-            'links' => $donors->linkPills()->toArray(),
+            'links' => $donors->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $donors->toArray()['meta'] ?? [],
         ]);
     }

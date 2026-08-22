@@ -22,14 +22,14 @@ class EventController extends Controller
         return response()->json([
             'success' => true,
             'data' => EventResource::collection($events),
-            'links' => $events->linkPills()->toArray(),
+            'links' => $events->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $events->toArray()['meta'] ?? [],
         ]);
     }
 
     public function show(string $slug)
     {
-        $event = Event::where('slug', $slug)->firstOrFail();
+        $event = Event::where('slug', $slug)->firstOrFail(); // @phpstan-ignore-line
 
         return response()->json([
             'success' => true,

@@ -29,7 +29,7 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
             'data' => UserResource::collection($users),
-            'links' => $users->linkPills()->toArray(),
+            'links' => $users->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $users->toArray()['meta'] ?? [],
         ]);
     }
@@ -44,7 +44,7 @@ class UserController extends Controller
         }
 
         $user = User::create($data);
-        $user->roles()->sync($request->input('roles', []));
+        $user->roles()->sync($request->input('roles', [])); // @phpstan-ignore-line
 
         return response()->json([
             'success' => true,

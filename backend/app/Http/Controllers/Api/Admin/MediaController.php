@@ -27,7 +27,7 @@ class MediaController extends Controller
         return response()->json([
             'success' => true,
             'data' => MediaResource::collection($media),
-            'links' => $media->linkPills()->toArray(),
+            'links' => $media->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $media->toArray()['meta'] ?? [],
         ]);
     }

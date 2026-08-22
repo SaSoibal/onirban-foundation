@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from '../../context/AuthContext';
-import DonorCard from '../../components/public/DonorCard';
+import { AuthProvider } from '../../../src/context/AuthContext';
+import DonorCard from '../../../src/components/public/DonorCard';
 
 const renderWithProviders = (ui) => render(<BrowserRouter><AuthProvider>{ui}</AuthProvider></BrowserRouter>);
 

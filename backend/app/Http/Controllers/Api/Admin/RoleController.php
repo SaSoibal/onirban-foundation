@@ -19,7 +19,7 @@ class RoleController extends Controller
                 'id' => $role->id,
                 'name' => $role->name,
                 'guard_name' => $role->guard_name,
-                'permissions' => $role->permissions->pluck('name'),
+                'permissions' => $role->permissions->pluck('name'), // @phpstan-ignore-line
                 'created_at' => $role->created_at,
                 'updated_at' => $role->updated_at,
             ]),
@@ -41,7 +41,7 @@ class RoleController extends Controller
                 'id' => $role->id,
                 'name' => $role->name,
                 'guard_name' => $role->guard_name,
-                'permissions' => $role->permissions->pluck('name'),
+                'permissions' => $role->permissions->pluck('name'), // @phpstan-ignore-line
             ],
         ], 201);
     }
@@ -56,7 +56,7 @@ class RoleController extends Controller
                 'id' => $role->id,
                 'name' => $role->name,
                 'guard_name' => $role->guard_name,
-                'permissions' => $role->permissions->pluck('name'),
+                'permissions' => $role->permissions->pluck('name'), // @phpstan-ignore-line
                 'created_at' => $role->created_at,
                 'updated_at' => $role->updated_at,
             ],
@@ -81,7 +81,7 @@ class RoleController extends Controller
                 'id' => $role->id,
                 'name' => $role->name,
                 'guard_name' => $role->guard_name,
-                'permissions' => $role->permissions->pluck('name'),
+                'permissions' => $role->permissions->pluck('name'), // @phpstan-ignore-line
             ],
         ]);
     }

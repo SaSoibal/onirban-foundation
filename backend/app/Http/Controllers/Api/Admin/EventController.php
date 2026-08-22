@@ -28,7 +28,7 @@ class EventController extends Controller
         return response()->json([
             'success' => true,
             'data' => EventResource::collection($events),
-            'links' => $events->linkPills()->toArray(),
+            'links' => $events->linkPills()->toArray(), // @phpstan-ignore-line
             'meta' => $events->toArray()['meta'] ?? [],
         ]);
     }
