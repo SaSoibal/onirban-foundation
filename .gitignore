@@ -62,11 +62,8 @@ bootstrap/cache/*.php
 /public/storage/app/public/*
 !/public/storage/app/public/.gitignore
 
-# Composer
-composer.lock
-
-# NPM
-package-lock.json
+# Composer / NPM
+# Lock files are committed for reproducible CI builds
 
 # Laravel specific
 /public/mix-manifest.json
