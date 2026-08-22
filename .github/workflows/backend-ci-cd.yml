@@ -184,7 +184,7 @@ jobs:
           node-version: "22"
 
       - name: Install Railway CLI
-        run: npm install -g @railway/cli
+        run: npm install -g @railway/cli@5.2.0
 
       - name: Deploy to Railway
         working-directory: backend
