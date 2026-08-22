@@ -3,6 +3,7 @@
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\LogActivity;
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->api([
+            HandleCors::class,
+        ]);
+
         $middleware->alias([
             'role' => CheckRole::class,
             'permission' => CheckPermission::class,
