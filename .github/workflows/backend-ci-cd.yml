@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - "backend/**"
+      - ".github/workflows/backend-ci-cd.yml"
 
   workflow_dispatch:
 
@@ -51,7 +52,7 @@ jobs:
       - name: Generate autoload files
         run: composer dump-autoload
 
-      - name: Run Laravel Pint
+      - name: Check Laravel Pint
         run: ./vendor/bin/pint --test
 
   # ============================================================
@@ -192,7 +193,13 @@ jobs:
 
       - name: Install production dependencies
         working-directory: backend
-        run: composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader
+        run: |
+          composer install \
+            --no-dev \
+            --no-interaction \
+            --prefer-dist \
+            --no-progress \
+            --optimize-autoloader
 
       - name: Deploy to Railway
         uses: railwayapp/railway-action@v1
