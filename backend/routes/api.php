@@ -62,6 +62,14 @@ Route::get('/blood-donors/{id}', [BloodDonorController::class, 'show']);
 
 Route::get('/blood-requests', [BloodRequestController::class, 'index']);
 
+Route::get('/health', function () {
+    return response()->json([
+        'success' => true,
+        'message' => 'Onirban Foundation API is healthy',
+        'timestamp' => now()->toIso8601String(),
+    ]);
+});
+
 Route::get('/settings', [SettingsController::class, 'index']);
 Route::get('/settings/{key}', [SettingsController::class, 'show']);
 
