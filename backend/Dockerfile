@@ -5,6 +5,7 @@ RUN apk add --no-cache \
     supervisor \
     libpng-dev \
     libjpeg-turbo-dev \
+    freetype-dev \
     libwebp-dev \
     libxpm-dev \
     libzip-dev \
