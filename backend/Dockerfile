@@ -13,6 +13,7 @@ RUN apk add --no-cache \
     unzip \
     git \
     curl \
+    oniguruma-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring gd exif bcmath
 
