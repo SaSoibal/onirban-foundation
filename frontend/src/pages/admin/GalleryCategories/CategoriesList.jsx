@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Modal from '../../components/admin/Modal';
-import api from '../../services/api';
+import Modal from '../../../components/admin/Modal';
+import api from '../../../services/api';
 
 export default function CategoriesList() {
   const [categories, setCategories] = useState([]);
