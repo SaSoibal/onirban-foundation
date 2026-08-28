@@ -24,24 +24,24 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className={`bg-gray-800 text-white transition-all ${collapsed ? 'w-16' : 'w-64'} h-screen flex flex-col overflow-hidden`}>
+    <div className={`bg-gray-800 text-white transition-all ${collapsed ? 'w-16' : 'w-64'} h-screen flex-shrink-0 flex flex-col overflow-hidden`}>
       <div className="p-4 flex justify-between items-center">
         {!collapsed && <h2 className="text-xl font-bold">Admin Panel</h2>}
         <button onClick={() => setCollapsed(!collapsed)} className="text-gray-400 hover:text-white">
           {collapsed ? '→' : '←'}
         </button>
       </div>
-      <nav className="mt-4 flex-1 overflow-y-auto">
+      <nav className="mt-2 flex-1 overflow-y-auto px-2 pb-4 space-y-1">
         {menuItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `flex items-center px-4 py-3 hover:bg-gray-700 ${isActive ? 'bg-gray-700 border-l-4 border-red-500' : ''}`
+              `flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`
             }
           >
-            <span className="text-lg mr-3">{item.icon}</span>
-            {!collapsed && <span>{item.label}</span>}
+            <span className="text-base mr-3 flex-shrink-0">{item.icon}</span>
+            {!collapsed && <span className="truncate">{item.label}</span>}
           </NavLink>
         ))}
       </nav>
