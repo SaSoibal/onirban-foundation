@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Modal from '../../components/admin/Modal';
-import ImageUploadPreview from '../../components/admin/ImageUploadPreview';
 import api from '../../services/api';
 
 export default function BannersManagement() {
