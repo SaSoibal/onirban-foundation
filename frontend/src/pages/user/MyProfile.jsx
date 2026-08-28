@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 export default function MyProfile() {
   const [user, setUser] = useState({ name: '', email: '', phone: '' });
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.get('/auth/me').then((res) => {
+      const data = res.data.data;
+      setUser({ name: data.name || '', email: data.email || '', phone: data.phone || '' });
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
 
   const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -12,6 +21,8 @@ export default function MyProfile() {
     await api.put('/users/me', user);
     setSaved(true);
   };
+
+  if (loading) return <div className="max-w-2xl mx-auto px-4 py-12">Loading...</div>;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">

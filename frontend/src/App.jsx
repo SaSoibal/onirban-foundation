@@ -14,49 +14,44 @@ import Team from './pages/public/Team';
 import Events from './pages/public/Events';
 import EventDetail from './pages/public/EventDetail';
 import Testimonials from './pages/public/Testimonials';
-import BloodDonors from './pages/public/BloodDonors';
+import BloodDonation from './pages/public/BloodDonation';
 import BloodRequestForm from './pages/public/BloodRequestForm';
 import VolunteerRegister from './pages/public/VolunteerRegister';
 import Donate from './pages/public/Donate';
 import Contact from './pages/public/Contact';
 import PageBySlug from './pages/public/PageBySlug';
 
-// Admin Pages
-import Login from './pages/admin/Login';
-import Dashboard from './pages/admin/Dashboard';
-import PagesList from './pages/admin/Pages/PagesList';
-import PageForm from './pages/admin/Pages/PageForm';
-import ProgramsList from './pages/admin/Programs/ProgramsList';
-import ProgramForm from './pages/admin/Programs/ProgramForm';
-import GalleryList from './pages/admin/Gallery/GalleryList';
-import GalleryForm from './pages/admin/Gallery/GalleryForm';
-import CategoriesList from './pages/admin/GalleryCategories/CategoriesList';
-import CategoryForm from './pages/admin/GalleryCategories/CategoryForm';
-import TeamList from './pages/admin/Team/TeamList';
-import TeamForm from './pages/admin/Team/TeamForm';
-import EventsList from './pages/admin/Events/EventsList';
-import EventForm from './pages/admin/Events/EventForm';
-import TestimonialsList from './pages/admin/Testimonials/TestimonialsList';
-import TestimonialForm from './pages/admin/Testimonials/TestimonialForm';
-import DonorsList from './pages/admin/BloodDonors/DonorsList';
-import DonorForm from './pages/admin/BloodDonors/DonorForm';
-import RequestsList from './pages/admin/BloodRequests/RequestsList';
-import RequestForm from './pages/admin/BloodRequests/RequestForm';
-import VolunteersList from './pages/admin/Volunteers/VolunteersList';
-import VolunteerForm from './pages/admin/Volunteers/VolunteerForm';
-import MessagesList from './pages/admin/ContactMessages/MessagesList';
-import MessageDetail from './pages/admin/ContactMessages/MessageDetail';
-import DonationsList from './pages/admin/Donations/DonationsList';
-import DonationForm from './pages/admin/Donations/DonationForm';
+// User Pages
+import UserDashboard from './pages/user/UserDashboard';
+import MyProfile from './pages/user/MyProfile';
+import MyDonations from './pages/user/MyDonations';
+
+// Admin Auth
+import Login from './pages/auth/Login';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import RolesList from './pages/admin/Roles/RolesList';
+import RoleForm from './pages/admin/Roles/RoleForm';
+import MediaLibrary from './pages/admin/Media/MediaLibrary';
 import GeneralSettings from './pages/admin/Settings/GeneralSettings';
 import SeoSettings from './pages/admin/Settings/SeoSettings';
 import SocialSettings from './pages/admin/Settings/SocialSettings';
 import LogsList from './pages/admin/ActivityLogs/LogsList';
-import UsersList from './pages/admin/Users/UsersList';
-import UserForm from './pages/admin/Users/UserForm';
-import RolesList from './pages/admin/Roles/RolesList';
-import RoleForm from './pages/admin/Roles/RoleForm';
-import MediaLibrary from './pages/admin/Media/MediaLibrary';
+import DonationsList from './pages/admin/Donations/DonationsList';
+import DonationForm from './pages/admin/Donations/DonationForm';
+
+// Management Pages
+import PagesManagement from './pages/admin/PagesManagement';
+import ProgramsManagement from './pages/admin/ProgramsManagement';
+import GalleryManagement from './pages/admin/GalleryManagement';
+import TeamManagement from './pages/admin/TeamManagement';
+import EventsManagement from './pages/admin/EventsManagement';
+import VolunteersManagement from './pages/admin/VolunteersManagement';
+import BloodDonorsManagement from './pages/admin/BloodDonorsManagement';
+import BloodRequestsManagement from './pages/admin/BloodRequestsManagement';
+import ContactsManagement from './pages/admin/ContactsManagement';
+import SettingsManagement from './pages/admin/SettingsManagement';
+import UsersManagement from './pages/admin/UsersManagement';
+import ActivityLogsManagement from './pages/admin/ActivityLogsManagement';
 
 export default function App() {
   const { user, loading } = useAuth();
@@ -79,12 +74,20 @@ export default function App() {
           <Route path="events" element={<Events />} />
           <Route path="events/:slug" element={<EventDetail />} />
           <Route path="testimonials" element={<Testimonials />} />
-          <Route path="blood-donors" element={<BloodDonors />} />
+          <Route path="blood-donors" element={<BloodDonation />} />
           <Route path="blood-request" element={<BloodRequestForm />} />
           <Route path="volunteer-registration" element={<VolunteerRegister />} />
           <Route path="donate" element={<Donate />} />
           <Route path="contact" element={<Contact />} />
           <Route path="pages/:slug" element={<PageBySlug />} />
+        </Route>
+
+        {/* User Routes */}
+        <Route path="/user" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<UserDashboard />} />
+          <Route path="profile" element={<MyProfile />} />
+          <Route path="donations" element={<MyDonations />} />
         </Route>
 
         {/* Admin Auth */}
@@ -100,50 +103,28 @@ export default function App() {
           }
         >
           <Route index element={<Navigate to="dashboard" />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="pages" element={<PagesList />} />
-          <Route path="pages/create" element={<PageForm />} />
-          <Route path="pages/:id/edit" element={<PageForm />} />
-          <Route path="programs" element={<ProgramsList />} />
-          <Route path="programs/create" element={<ProgramForm />} />
-          <Route path="programs/:id/edit" element={<ProgramForm />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="pages" element={<PagesManagement />} />
+          <Route path="programs" element={<ProgramsManagement />} />
           <Route path="gallery-categories" element={<CategoriesList />} />
           <Route path="gallery-categories/create" element={<CategoryForm />} />
           <Route path="gallery-categories/:id/edit" element={<CategoryForm />} />
-          <Route path="gallery" element={<GalleryList />} />
-          <Route path="gallery/create" element={<GalleryForm />} />
-          <Route path="gallery/:id/edit" element={<GalleryForm />} />
-          <Route path="team" element={<TeamList />} />
-          <Route path="team/create" element={<TeamForm />} />
-          <Route path="team/:id/edit" element={<TeamForm />} />
-          <Route path="events" element={<EventsList />} />
-          <Route path="events/create" element={<EventForm />} />
-          <Route path="events/:id/edit" element={<EventForm />} />
-          <Route path="testimonials" element={<TestimonialsList />} />
-          <Route path="testimonials/create" element={<TestimonialForm />} />
-          <Route path="testimonials/:id/edit" element={<TestimonialForm />} />
-          <Route path="blood-donors" element={<DonorsList />} />
-          <Route path="blood-donors/create" element={<DonorForm />} />
-          <Route path="blood-donors/:id/edit" element={<DonorForm />} />
-          <Route path="blood-donors/:id/verify" element={<DonorForm />} />
-          <Route path="blood-requests" element={<RequestsList />} />
-          <Route path="blood-requests/create" element={<RequestForm />} />
-          <Route path="blood-requests/:id/edit" element={<RequestForm />} />
-          <Route path="volunteers" element={<VolunteersList />} />
-          <Route path="volunteers/create" element={<VolunteerForm />} />
-          <Route path="volunteers/:id/edit" element={<VolunteerForm />} />
-          <Route path="contact-messages" element={<MessagesList />} />
-          <Route path="contact-messages/:id" element={<MessageDetail />} />
+          <Route path="gallery" element={<GalleryManagement />} />
+          <Route path="team" element={<TeamManagement />} />
+          <Route path="events" element={<EventsManagement />} />
+          <Route path="testimonials" element={<TestimonialsManagement />} />
+          <Route path="blood-donors" element={<BloodDonorsManagement />} />
+          <Route path="blood-requests" element={<BloodRequestsManagement />} />
+          <Route path="volunteers" element={<VolunteersManagement />} />
+          <Route path="contact-messages" element={<ContactsManagement />} />
           <Route path="donations" element={<DonationsList />} />
           <Route path="donations/create" element={<DonationForm />} />
           <Route path="donations/:id/edit" element={<DonationForm />} />
-          <Route path="settings" element={<GeneralSettings />} />
+          <Route path="settings" element={<SettingsManagement />} />
           <Route path="settings/seo" element={<SeoSettings />} />
           <Route path="settings/social" element={<SocialSettings />} />
           <Route path="activity-logs" element={<LogsList />} />
-          <Route path="users" element={<UsersList />} />
-          <Route path="users/create" element={<UserForm />} />
-          <Route path="users/:id/edit" element={<UserForm />} />
+          <Route path="users" element={<UsersManagement />} />
           <Route path="roles" element={<RolesList />} />
           <Route path="roles/create" element={<RoleForm />} />
           <Route path="roles/:id/edit" element={<RoleForm />} />

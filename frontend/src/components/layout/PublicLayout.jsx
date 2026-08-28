@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import PublicHeader from './Header';
-import PublicFooter from './Footer';
+import Navbar from '../common/Navbar';
+import Footer from '../layout/Footer';
 
 export default function PublicLayout() {
   return (
     <div className="min-h-screen flex flex-col">
-      <PublicHeader />
+      <Navbar />
       <main className="flex-1">
         <Outlet />
       </main>
-      <PublicFooter />
+      <Footer />
     </div>
   );
 }
