@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string|null $title
  * @property string|null $subtitle
- * @property string $image_url
+ * @property string $image_path
  * @property string|null $link_url
  * @property string|null $button_text
  * @property int $sort_order
@@ -36,7 +36,7 @@ class Banner extends Model
     protected $fillable = [
         'title',
         'subtitle',
-        'image_url',
+        'image_path',
         'link_url',
         'button_text',
         'sort_order',

@@ -6,12 +6,13 @@ use App\Models\User;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property-read int $id
  * @property-read string|null $title
  * @property-read string|null $subtitle
- * @property-read string $image_url
+ * @property-read string $image_path
  * @property-read string|null $link_url
  * @property-read string|null $button_text
  * @property-read int $sort_order
@@ -30,7 +31,8 @@ class BannerResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'subtitle' => $this->subtitle,
-            'image_url' => $this->image_url,
+            'image_path' => $this->image_path,
+            'image_url' => $this->image_path ? Storage::url($this->image_path) : null,
             'link_url' => $this->link_url,
             'button_text' => $this->button_text,
             'sort_order' => $this->sort_order,

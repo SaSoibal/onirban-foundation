@@ -13,18 +13,21 @@ export default function BannerSlider() {
   }, []);
 
   useEffect(() => {
-    if (banners.length <= 1) return;
+    if (activeBanners.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % banners.length);
+      setCurrent((prev) => (prev + 1) % activeBanners.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [banners.length]);
+  }, [activeBanners.length]);
 
   if (!banners.length) return null;
 
+  const activeBanners = banners.filter((b) => b.image_url);
+  if (!activeBanners.length) return null;
+
   return (
     <div className="relative h-[500px] overflow-hidden">
-      {banners.map((b, idx) => (
+      {activeBanners.map((b, idx) => (
         <div
           key={b.id}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
@@ -52,9 +55,9 @@ export default function BannerSlider() {
           </div>
         </div>
       ))}
-      {banners.length > 1 && (
+      {activeBanners.length > 1 && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
-          {banners.map((_, idx) => (
+          {activeBanners.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrent(idx)}

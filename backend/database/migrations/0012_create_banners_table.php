@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            $table->string('image_url');
+            $table->string('image_path')->nullable();
             $table->string('link_url')->nullable();
             $table->string('button_text')->nullable()->default('Learn More');
             $table->integer('sort_order')->default(0);

@@ -36,13 +36,17 @@ class BannerController extends Controller
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'subtitle' => ['nullable', 'string', 'max:500'],
-            'image_url' => ['required', 'string', 'max:500'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'link_url' => ['nullable', 'url', 'max:500'],
             'button_text' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
             'status' => ['nullable', 'string', 'max:50'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('banners', 'public');
+        }
 
         $data['created_by'] = $request->user()->id;
         $data['updated_by'] = $request->user()->id;
@@ -68,13 +72,17 @@ class BannerController extends Controller
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'subtitle' => ['nullable', 'string', 'max:500'],
-            'image_url' => ['nullable', 'string', 'max:500'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'link_url' => ['nullable', 'url', 'max:500'],
             'button_text' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
             'status' => ['nullable', 'string', 'max:50'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('banners', 'public');
+        }
 
         $data['updated_by'] = $request->user()->id;
 
