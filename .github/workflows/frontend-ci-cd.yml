@@ -67,9 +67,11 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Build frontend
+      - name: Clean and build frontend
         working-directory: frontend
-        run: npm run build
+        run: |
+          rm -rf dist
+          npm run build
 
       - name: Add .nojekyll to bypass Jekyll processing
         run: touch frontend/dist/.nojekyll
