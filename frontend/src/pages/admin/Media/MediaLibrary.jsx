@@ -18,7 +18,7 @@ export default function MediaLibrary() {
     formData.append('file', file);
     formData.append('collection', 'general');
     try {
-      await api.post('/media/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+      await api.post('/admin/media/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       load();
     } catch (err) {
       setError('Upload failed');
@@ -28,7 +28,7 @@ export default function MediaLibrary() {
   };
 
   const handleDelete = async (id) => {
-    if (confirm('Delete this media?')) { await api.delete(`/media/${id}`); load(); }
+    if (confirm('Delete this media?')) { await api.delete(`/admin/media/${id}`); load(); }
   };
 
   return (
