@@ -32,7 +32,9 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import RolesList from './pages/admin/Roles/RolesList';
 import RoleForm from './pages/admin/Roles/RoleForm';
 import MediaLibrary from './pages/admin/Media/MediaLibrary';
-import GeneralSettings from './pages/admin/Settings/GeneralSettings';
+import CategoriesList from './pages/admin/GalleryCategories/CategoriesList';
+import CategoryForm from './pages/admin/GalleryCategories/CategoryForm';
+import TestimonialsManagement from './pages/admin/TestimonialsManagement';
 import SeoSettings from './pages/admin/Settings/SeoSettings';
 import SocialSettings from './pages/admin/Settings/SocialSettings';
 import LogsList from './pages/admin/ActivityLogs/LogsList';
@@ -51,7 +53,6 @@ import BloodRequestsManagement from './pages/admin/BloodRequestsManagement';
 import ContactsManagement from './pages/admin/ContactsManagement';
 import SettingsManagement from './pages/admin/SettingsManagement';
 import UsersManagement from './pages/admin/UsersManagement';
-import ActivityLogsManagement from './pages/admin/ActivityLogsManagement';
 
 export default function App() {
   const { user, loading } = useAuth();

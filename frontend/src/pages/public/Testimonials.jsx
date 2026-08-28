@@ -14,7 +14,7 @@ export default function Testimonials() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map((t) => (
           <div key={t.id} className="bg-white p-6 rounded-lg shadow">
-            <p className="text-gray-700 mb-4 italic">"{t.message || t.content || ''}"</p>
+            <p className="text-gray-700 mb-4 italic">&ldquo;{t.message || t.content || ''}&rdquo;</p>
             <div className="flex items-center gap-3">
               {t.photo && <img src={t.photo} alt={t.name} className="w-10 h-10 rounded-full object-cover" />}
               <div>
