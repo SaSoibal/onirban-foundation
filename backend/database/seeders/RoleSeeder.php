@@ -18,7 +18,10 @@ class RoleSeeder extends Seeder
 
         $permissions = config('permission.permissions');
         foreach ($permissions as $permission) {
-            Permission::create(array_merge($permission, ['guard_name' => 'api']));
+            Permission::updateOrCreate(
+                ['name' => $permission['name'], 'guard_name' => 'api'],
+                ['guard_name' => 'api']
+            );
         }
 
         $superAdmin = Role::create(['name' => 'super_admin', 'guard_name' => 'api']);
