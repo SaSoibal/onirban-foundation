@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Modal from '../../../components/admin/Modal';
 import api from '../../../services/api';
 
 export default function RoleForm() {
