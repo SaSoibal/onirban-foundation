@@ -33,7 +33,16 @@ RUN composer dump-autoload --no-scripts --no-dev --optimize && \
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY supervisord.conf /etc/supervisord.conf
 
-RUN printf '#!/bin/bash\necho "Running database migrations..."\nphp artisan migrate --force\n\necho "Starting PHP-FPM and Nginx..."\nphp-fpm -D\nnginx -g "daemon off;"\n' > /usr/local/bin/entrypoint.sh \
+# Inline creation of entrypoint script using standard Alpine shell (sh)
+RUN printf '#!/bin/sh\n\
+    echo "Running database migrations..."\n\
+    php artisan migrate --force\n\
+    \n\
+    echo "Starting PHP-FPM..."\n\
+    php-fpm -D\n\
+    \n\
+    echo "Starting Nginx..."\n\
+    exec nginx -g "daemon off;"\n' > /usr/local/bin/entrypoint.sh \
     && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080
