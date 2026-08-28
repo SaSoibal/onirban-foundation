@@ -32,9 +32,9 @@ RUN composer dump-autoload --no-scripts --no-dev --optimize && \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY supervisord.conf /etc/supervisord.conf
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN printf '#!/bin/bash\necho "Running database migrations..."\nphp artisan migrate --force\n\necho "Starting PHP-FPM and Nginx..."\nphp-fpm -D\nnginx -g "daemon off;"\n' > /usr/local/bin/entrypoint.sh \
+    && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080
 
