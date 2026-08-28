@@ -8,7 +8,7 @@ export default function CategoriesList() {
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({ name: '', description: '' });
 
-  const load = () => api.get('/gallery/categories').then((res) => setCategories(res.data.data)).catch(() => setCategories([]));
+  const load = () => api.get('/admin/gallery-categories').then((res) => setCategories(res.data.data)).catch(() => setCategories([]));
   useEffect(() => { load(); }, []);
 
   const openCreate = () => { setEditing(null); setForm({ name: '', description: '' }); setShowModal(true); };
@@ -16,8 +16,8 @@ export default function CategoriesList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/gallery/categories/${editing.id}`, form);
-    else await api.post('/gallery/categories', form);
+    if (editing) await api.put(`/admin/gallery-categories/${editing.id}`, form);
+    else await api.post('/admin/gallery-categories', form);
     setShowModal(false);
     load();
   };

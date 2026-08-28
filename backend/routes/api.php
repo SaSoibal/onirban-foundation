@@ -5,10 +5,13 @@ use App\Http\Controllers\Api\Admin\BloodDonorController as AdminBloodDonorContro
 use App\Http\Controllers\Api\Admin\BloodRequestController as AdminBloodRequestController;
 use App\Http\Controllers\Api\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Admin\DonationController;
 use App\Http\Controllers\Api\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Api\Admin\GalleryCategoryController;
 use App\Http\Controllers\Api\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Api\Admin\MediaController;
 use App\Http\Controllers\Api\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Api\Admin\PermissionController;
 use App\Http\Controllers\Api\Admin\ProgramController as AdminProgramController;
 use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\SettingController;
@@ -191,4 +194,21 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::get('/media', [MediaController::class, 'index']);
     Route::post('/media/upload', [MediaController::class, 'store']);
     Route::delete('/media/{media}', [MediaController::class, 'destroy']);
+
+    // Permissions
+    Route::get('/permissions', [PermissionController::class, 'index']);
+
+    // Donations
+    Route::get('/donations', [DonationController::class, 'index']);
+    Route::post('/donations', [DonationController::class, 'store']);
+    Route::get('/donations/{donation}', [DonationController::class, 'show']);
+    Route::put('/donations/{donation}', [DonationController::class, 'update']);
+    Route::delete('/donations/{donation}', [DonationController::class, 'destroy']);
+
+    // Gallery Categories
+    Route::get('/gallery-categories', [GalleryCategoryController::class, 'index']);
+    Route::post('/gallery-categories', [GalleryCategoryController::class, 'store']);
+    Route::get('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'show']);
+    Route::put('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'update']);
+    Route::delete('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'destroy']);
 });

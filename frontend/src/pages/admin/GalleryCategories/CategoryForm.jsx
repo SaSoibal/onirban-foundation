@@ -11,7 +11,7 @@ export default function CategoryForm() {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      api.get(`/gallery/categories/${id}`).then((res) => {
+      api.get(`/admin/gallery-categories/${id}`).then((res) => {
         setForm({ name: res.data.data.name, description: res.data.data.description || '' });
         setLoading(false);
       }).catch(() => setLoading(false));
@@ -20,8 +20,8 @@ export default function CategoryForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) await api.put(`/gallery/categories/${id}`, form);
-    else await api.post('/gallery/categories', form);
+    if (id) await api.put(`/admin/gallery-categories/${id}`, form);
+    else await api.post('/admin/gallery-categories', form);
     navigate('/admin/gallery-categories');
   };
 

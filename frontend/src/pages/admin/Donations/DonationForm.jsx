@@ -11,7 +11,7 @@ export default function DonationForm() {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      api.get(`/donations/${id}`).then((res) => {
+      api.get(`/admin/donations/${id}`).then((res) => {
         setForm({ donor_name: res.data.data.donor_name, email: res.data.data.email, phone: res.data.data.phone || '', amount: res.data.data.amount, currency: res.data.data.currency || 'USD', payment_method: res.data.data.payment_method || 'bank', status: res.data.data.status || 'pending' });
         setLoading(false);
       }).catch(() => setLoading(false));
@@ -20,8 +20,8 @@ export default function DonationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) await api.put(`/donations/${id}`, form);
-    else await api.post('/donations', form);
+    if (id) await api.put(`/admin/donations/${id}`, form);
+    else await api.post('/admin/donations', form);
     navigate('/admin/donations');
   };
 

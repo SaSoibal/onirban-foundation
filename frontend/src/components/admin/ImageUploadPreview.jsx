@@ -22,7 +22,7 @@ export default function ImageUploadPreview({ value, onChange, accept = 'image/*'
     formData.append('collection', 'general');
 
     try {
-      const res = await api.post('/media/upload', formData, {
+      const res = await api.post('/admin/media/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       onChange(res.data.data.file_path);

@@ -8,21 +8,21 @@ export default function DonationsList() {
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({ donor_name: '', email: '', phone: '', amount: '', currency: 'USD', payment_method: 'bank', status: 'pending' });
 
-  const load = () => api.get('/donations').then((res) => setDonations(res.data.data)).catch(() => setDonations([]));
+  const load = () => api.get('/admin/donations').then((res) => setDonations(res.data.data)).catch(() => setDonations([]));
   useEffect(() => { load(); }, []);
 
   const openEdit = (d) => { setEditing(d); setForm({ donor_name: d.donor_name, email: d.email, phone: d.phone || '', amount: d.amount, currency: d.currency || 'USD', payment_method: d.payment_method || 'bank', status: d.status || 'pending' }); setShowModal(true); };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/donations/${editing.id}`, form);
-    else await api.post('/donations', form);
+    if (editing) await api.put(`/admin/donations/${editing.id}`, form);
+    else await api.post('/admin/donations', form);
     setShowModal(false);
     load();
   };
 
   const handleDelete = async (d) => {
-    if (confirm('Delete this donation?')) { await api.delete(`/donations/${d.id}`); load(); }
+    if (confirm('Delete this donation?')) { await api.delete(`/admin/donations/${d.id}`); load(); }
   };
 
   return (
