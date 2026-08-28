@@ -35,14 +35,11 @@ COPY supervisord.conf /etc/supervisord.conf
 
 # Inline creation of entrypoint script using standard Alpine shell (sh)
 RUN printf '#!/bin/sh\n\
-    echo "Running database migrations..."\n\
-    php artisan migrate --force\n\
-    \n\
-    echo "Starting PHP-FPM..."\n\
-    php-fpm -D\n\
-    \n\
-    echo "Starting Nginx..."\n\
-    exec nginx -g "daemon off;"\n' > /usr/local/bin/entrypoint.sh \
+echo "Starting PHP-FPM..."\n\
+php-fpm -D\n\
+\n\
+echo "Starting Nginx..."\n\
+exec nginx -g "daemon off;"\n' > /usr/local/bin/entrypoint.sh \
     && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080
