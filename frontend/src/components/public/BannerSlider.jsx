@@ -12,6 +12,8 @@ export default function BannerSlider() {
     }).catch(() => setBanners([]));
   }, []);
 
+  const activeBanners = banners.filter((b) => b.is_active && b.status === 'active');
+
   useEffect(() => {
     if (activeBanners.length <= 1) return;
     const timer = setInterval(() => {
@@ -20,10 +22,9 @@ export default function BannerSlider() {
     return () => clearInterval(timer);
   }, [activeBanners.length]);
 
-  if (!banners.length) return null;
-
-  const activeBanners = banners.filter((b) => b.image_url);
   if (!activeBanners.length) return null;
+
+  const banner = activeBanners[current];
 
   return (
     <div className="relative h-[500px] overflow-hidden">
@@ -32,11 +33,15 @@ export default function BannerSlider() {
           key={b.id}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
         >
-          <img
-            src={b.image_url}
-            alt={b.title || 'Banner'}
-            className="w-full h-full object-cover"
-          />
+          {b.image_url ? (
+            <img
+              src={b.image_url}
+              alt={b.title || 'Banner'}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-r from-red-600 to-red-800" />
+          )}
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white px-4 max-w-3xl">
               {b.title && <h2 className="text-4xl md:text-6xl font-bold mb-4">{b.title}</h2>}
