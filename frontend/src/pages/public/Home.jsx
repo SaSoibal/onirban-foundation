@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import ProgramCard from '../../components/public/ProgramCard';
 import Hero from '../../components/public/Hero';
+import BannerSlider from '../../components/public/BannerSlider';
 
 export default function Home() {
   const [programs, setPrograms] = useState([]);
@@ -20,6 +21,7 @@ export default function Home() {
 
   return (
     <div>
+      <BannerSlider />
       <Hero />
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">

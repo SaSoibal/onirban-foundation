@@ -53,6 +53,7 @@ import BloodRequestsManagement from './pages/admin/BloodRequestsManagement';
 import ContactsManagement from './pages/admin/ContactsManagement';
 import SettingsManagement from './pages/admin/SettingsManagement';
 import UsersManagement from './pages/admin/UsersManagement';
+import BannersManagement from './pages/admin/BannersManagement';
 
 export default function App() {
   const { user, loading } = useAuth();
@@ -130,6 +131,7 @@ export default function App() {
           <Route path="roles/create" element={<RoleForm />} />
           <Route path="roles/:id/edit" element={<RoleForm />} />
           <Route path="media" element={<MediaLibrary />} />
+          <Route path="banners" element={<BannersManagement />} />
         </Route>
 
         {/* Catch-all */}

@@ -16,6 +16,7 @@ const menuItems = [
   { to: '/admin/donations', label: 'Donations', icon: '💰' },
   { to: '/admin/settings', label: 'Settings', icon: '⚙️' },
   { to: '/admin/activity-logs', label: 'Activity Logs', icon: '📋' },
+  { to: '/admin/banners', label: 'Banners', icon: '🎬' },
   { to: '/admin/users', label: 'Users', icon: '👤' },
   { to: '/admin/roles', label: 'Roles', icon: '🔐' },
 ];

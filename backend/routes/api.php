@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\ActivityLogController;
+use App\Http\Controllers\Api\Admin\BannerController;
 use App\Http\Controllers\Api\Admin\BloodDonorController as AdminBloodDonorController;
 use App\Http\Controllers\Api\Admin\BloodRequestController as AdminBloodRequestController;
 use App\Http\Controllers\Api\Admin\ContactController as AdminContactController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Api\Admin\TestimonialController as AdminTestimonialCont
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\VolunteerController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Public\BannerController as PublicBannerController;
 use App\Http\Controllers\Api\Public\BloodDonorController;
 use App\Http\Controllers\Api\Public\BloodRequestController;
 use App\Http\Controllers\Api\Public\EventController;
@@ -58,6 +60,8 @@ Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{slug}', [EventController::class, 'show']);
 
 Route::get('/testimonials', [TestimonialController::class, 'index']);
+
+Route::get('/banners', [PublicBannerController::class, 'index']);
 
 Route::get('/blood-donors', [BloodDonorController::class, 'index']);
 Route::get('/blood-donors/eligible', [BloodDonorController::class, 'eligible']);
@@ -211,4 +215,11 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::get('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'show']);
     Route::put('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'update']);
     Route::delete('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'destroy']);
+
+    // Banners
+    Route::get('/banners', [BannerController::class, 'index']);
+    Route::post('/banners', [BannerController::class, 'store']);
+    Route::get('/banners/{banner}', [BannerController::class, 'show']);
+    Route::put('/banners/{banner}', [BannerController::class, 'update']);
+    Route::delete('/banners/{banner}', [BannerController::class, 'destroy']);
 });

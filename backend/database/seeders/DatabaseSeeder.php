@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             BloodGroupSeeder::class,
+            BannerSeeder::class,
         ]);
 
         $admin = User::create([
