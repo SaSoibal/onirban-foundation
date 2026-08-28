@@ -24,10 +24,10 @@ class RoleSeeder extends Seeder
             );
         }
 
-        $superAdmin = Role::create(['name' => 'super_admin', 'guard_name' => 'api']);
-        $admin = Role::create(['name' => 'admin', 'guard_name' => 'api']);
-        $editor = Role::create(['name' => 'editor', 'guard_name' => 'api']);
-        $viewer = Role::create(['name' => 'viewer', 'guard_name' => 'api']);
+        $superAdmin = Role::updateOrCreate(['name' => 'super_admin', 'guard_name' => 'api'], ['guard_name' => 'api']);
+        $admin = Role::updateOrCreate(['name' => 'admin', 'guard_name' => 'api'], ['guard_name' => 'api']);
+        $editor = Role::updateOrCreate(['name' => 'editor', 'guard_name' => 'api'], ['guard_name' => 'api']);
+        $viewer = Role::updateOrCreate(['name' => 'viewer', 'guard_name' => 'api'], ['guard_name' => 'api']);
 
         $superAdmin->syncPermissions(Permission::all());
 
