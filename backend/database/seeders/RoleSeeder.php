@@ -13,9 +13,12 @@ class RoleSeeder extends Seeder
     {
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
+        Permission::where('guard_name', 'web')->delete();
+        Role::where('guard_name', 'web')->delete();
+
         $permissions = config('permission.permissions');
         foreach ($permissions as $permission) {
-            Permission::create($permission);
+            Permission::create(array_merge($permission, ['guard_name' => 'api']));
         }
 
         $superAdmin = Role::create(['name' => 'super_admin', 'guard_name' => 'api']);
