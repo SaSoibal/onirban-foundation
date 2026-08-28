@@ -24,14 +24,14 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className={`bg-gray-800 text-white transition-all ${collapsed ? 'w-16' : 'w-64'} h-screen`}>
+    <div className={`bg-gray-800 text-white transition-all ${collapsed ? 'w-16' : 'w-64'} h-screen flex flex-col overflow-hidden`}>
       <div className="p-4 flex justify-between items-center">
         {!collapsed && <h2 className="text-xl font-bold">Admin Panel</h2>}
         <button onClick={() => setCollapsed(!collapsed)} className="text-gray-400 hover:text-white">
           {collapsed ? '→' : '←'}
         </button>
       </div>
-      <nav className="mt-4">
+      <nav className="mt-4 flex-1 overflow-y-auto">
         {menuItems.map((item) => (
           <NavLink
             key={item.to}
