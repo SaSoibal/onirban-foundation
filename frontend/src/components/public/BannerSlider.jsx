@@ -22,8 +22,6 @@ export default function BannerSlider() {
 
   if (!banners.length) return null;
 
-  const banner = banners[current];
-
   return (
     <div className="relative h-[500px] overflow-hidden">
       {banners.map((b, idx) => (
