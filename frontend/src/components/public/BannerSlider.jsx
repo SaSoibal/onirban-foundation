@@ -4,7 +4,6 @@ import api from '../../services/api';
 export default function BannerSlider() {
   const [banners, setBanners] = useState([]);
   const [current, setCurrent] = useState(0);
-  const [imageErrors, setImageErrors] = useState({});
 
   useEffect(() => {
     api.get('/banners').then((res) => {
@@ -25,17 +24,6 @@ export default function BannerSlider() {
 
   if (!activeBanners.length) return null;
 
-  const getImageSrc = (banner) => {
-    if (imageErrors[banner.id]) {
-      return banner.image_api_url;
-    }
-    return banner.image_url || banner.image_api_url;
-  };
-
-  const handleImageError = (bannerId) => {
-    setImageErrors((prev) => ({ ...prev, [bannerId]: true }));
-  };
-
   return (
     <div className="relative h-[500px] overflow-hidden">
       {activeBanners.map((b, idx) => (
@@ -45,10 +33,9 @@ export default function BannerSlider() {
         >
           {b.image_url ? (
             <img
-              src={getImageSrc(b)}
+              src={b.image_url}
               alt={b.title || 'Banner'}
               className="w-full h-full object-cover"
-              onError={() => handleImageError(b.id)}
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-r from-red-600 to-red-800" />
