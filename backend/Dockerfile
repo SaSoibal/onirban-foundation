@@ -28,7 +28,8 @@ RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-pr
 COPY . .
 
 RUN composer dump-autoload --no-scripts --no-dev --optimize && \
-    chown -R www-data:www-data /app/storage /app/bootstrap/cache
+    chown -R www-data:www-data /app/storage /app/bootstrap/cache && \
+    php artisan storage:link
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY supervisord.conf /etc/supervisord.conf

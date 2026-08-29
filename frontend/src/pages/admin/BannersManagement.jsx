@@ -15,6 +15,13 @@ export default function BannersManagement() {
   const openCreate = () => { setEditing(null); setForm({ title: '', subtitle: '', image_path: '', link_url: '', button_text: 'Learn More', sort_order: 0, is_active: true, status: 'active' }); setPreview(null); setShowModal(true); };
   const openEdit = (b) => { setEditing(b); setForm({ title: b.title, subtitle: b.subtitle || '', image_path: b.image_path || '', link_url: b.link_url || '', button_text: b.button_text || 'Learn More', sort_order: b.sort_order || 0, is_active: b.is_active, status: b.status }); setPreview(b.image_url || null); setShowModal(true); };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -89,7 +96,7 @@ export default function BannersManagement() {
         <form onSubmit={handleSubmit} className="space-y-3">
           <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Title" className="w-full border rounded px-3 py-2" />
           <input value={form.subtitle} onChange={(e) => setForm({ ...form, subtitle: e.target.value })} placeholder="Subtitle" className="w-full border rounded px-3 py-2" />
-          <input type="file" accept="image/*" className="w-full border rounded px-3 py-2" />
+          <input type="file" accept="image/*" onChange={handleFileChange} className="w-full border rounded px-3 py-2" />
           {preview && <img src={preview} alt="Preview" className="h-20 w-40 object-cover rounded border" />}
           <input value={form.link_url} onChange={(e) => setForm({ ...form, link_url: e.target.value })} placeholder="Link URL (optional)" className="w-full border rounded px-3 py-2" />
           <input value={form.button_text} onChange={(e) => setForm({ ...form, button_text: e.target.value })} placeholder="Button Text" className="w-full border rounded px-3 py-2" />
