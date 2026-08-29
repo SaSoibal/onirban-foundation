@@ -7,7 +7,6 @@ use App\Http\Resources\BannerResource;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
