@@ -31,7 +31,7 @@ class BannerResource extends JsonResource
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'image_path' => $this->image_path,
-            'image_url' => $this->image_path ? str_replace('http://', 'https://', url("/api/banners/{$this->id}/image")) : null,
+            'image_url' => $this->image_path ? $this->toBase64Image($this->image_path) : null,
             'link_url' => $this->link_url,
             'button_text' => $this->button_text,
             'sort_order' => $this->sort_order,
@@ -42,5 +42,30 @@ class BannerResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
+    }
+
+    private function toBase64Image(string $path): ?string
+    {
+        $fullPath = storage_path('app/public/'.$path);
+
+        if (! file_exists($fullPath)) {
+            return null;
+        }
+
+        $type = match (mime_content_type($fullPath)) {
+            'image/jpeg' => 'jpeg',
+            'image/png' => 'png',
+            'image/gif' => 'gif',
+            'image/webp' => 'webp',
+            default => null,
+        };
+
+        if (! $type) {
+            return null;
+        }
+
+        $data = base64_encode(file_get_contents($fullPath));
+
+        return "data:image/{$type};base64,{$data}";
     }
 }
