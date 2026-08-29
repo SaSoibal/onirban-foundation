@@ -219,6 +219,7 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
 
     // Banners
     Route::get('/banners', [BannerController::class, 'index']);
+    Route::get('/banners/{banner}/image', [BannerController::class, 'showImage']);
     Route::post('/banners', [BannerController::class, 'store']);
     Route::get('/banners/{banner}', [BannerController::class, 'show']);
     Route::post('/banners/{banner}', [BannerController::class, 'update']);
