@@ -84,7 +84,7 @@ class BannerController extends Controller
     {
         $path = storage_path('app/public/' . $banner->image_path);
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             abort(404);
         }
 
