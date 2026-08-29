@@ -102,49 +102,49 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::get('/settings', [SettingController::class, 'index']);
     Route::get('/settings/{key}', [SettingController::class, 'show']);
     Route::post('/settings', [SettingController::class, 'store']);
-    Route::put('/settings/{key}', [SettingController::class, 'update']);
+    Route::post('/settings/{key}', [SettingController::class, 'update']);
     Route::delete('/settings/{key}', [SettingController::class, 'destroy']);
 
     // Pages
     Route::get('/pages', [AdminPageController::class, 'index']);
     Route::post('/pages', [AdminPageController::class, 'store']);
     Route::get('/pages/{page}', [AdminPageController::class, 'show']);
-    Route::put('/pages/{page}', [AdminPageController::class, 'update']);
+    Route::post('/pages/{page}', [AdminPageController::class, 'update']);
     Route::delete('/pages/{page}', [AdminPageController::class, 'destroy']);
 
     // Programs
     Route::get('/programs', [AdminProgramController::class, 'index']);
     Route::post('/programs', [AdminProgramController::class, 'store']);
     Route::get('/programs/{program}', [AdminProgramController::class, 'show']);
-    Route::put('/programs/{program}', [AdminProgramController::class, 'update']);
+    Route::post('/programs/{program}', [AdminProgramController::class, 'update']);
     Route::delete('/programs/{program}', [AdminProgramController::class, 'destroy']);
 
     // Gallery
     Route::get('/gallery', [AdminGalleryController::class, 'index']);
     Route::post('/gallery', [AdminGalleryController::class, 'store']);
     Route::get('/gallery/{gallery}', [AdminGalleryController::class, 'show']);
-    Route::put('/gallery/{gallery}', [AdminGalleryController::class, 'update']);
+    Route::post('/gallery/{gallery}', [AdminGalleryController::class, 'update']);
     Route::delete('/gallery/{gallery}', [AdminGalleryController::class, 'destroy']);
 
     // Team
     Route::get('/team', [AdminTeamController::class, 'index']);
     Route::post('/team', [AdminTeamController::class, 'store']);
     Route::get('/team/{team}', [AdminTeamController::class, 'show']);
-    Route::put('/team/{team}', [AdminTeamController::class, 'update']);
+    Route::post('/team/{team}', [AdminTeamController::class, 'update']);
     Route::delete('/team/{team}', [AdminTeamController::class, 'destroy']);
 
     // Events
     Route::get('/events', [AdminEventController::class, 'index']);
     Route::post('/events', [AdminEventController::class, 'store']);
     Route::get('/events/{event}', [AdminEventController::class, 'show']);
-    Route::put('/events/{event}', [AdminEventController::class, 'update']);
+    Route::post('/events/{event}', [AdminEventController::class, 'update']);
     Route::delete('/events/{event}', [AdminEventController::class, 'destroy']);
 
     // Testimonials
     Route::get('/testimonials', [AdminTestimonialController::class, 'index']);
     Route::post('/testimonials', [AdminTestimonialController::class, 'store']);
     Route::get('/testimonials/{testimonial}', [AdminTestimonialController::class, 'show']);
-    Route::put('/testimonials/{testimonial}', [AdminTestimonialController::class, 'update']);
+    Route::post('/testimonials/{testimonial}', [AdminTestimonialController::class, 'update']);
     Route::delete('/testimonials/{testimonial}', [AdminTestimonialController::class, 'destroy']);
     Route::post('/testimonials/{testimonial}/approve', [AdminTestimonialController::class, 'approve']);
     Route::post('/testimonials/{testimonial}/reject', [AdminTestimonialController::class, 'reject']);
@@ -152,7 +152,7 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     // Blood Donors
     Route::get('/blood-donors', [AdminBloodDonorController::class, 'index']);
     Route::get('/blood-donors/{donor}', [AdminBloodDonorController::class, 'show']);
-    Route::put('/blood-donors/{donor}', [AdminBloodDonorController::class, 'update']);
+    Route::post('/blood-donors/{donor}', [AdminBloodDonorController::class, 'update']);
     Route::delete('/blood-donors/{donor}', [AdminBloodDonorController::class, 'destroy']);
     Route::post('/blood-donors/{donor}/verify', [AdminBloodDonorController::class, 'verify']);
     Route::get('/blood-donors/stats', [AdminBloodDonorController::class, 'stats']);
@@ -160,34 +160,34 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     // Blood Requests
     Route::get('/blood-requests', [AdminBloodRequestController::class, 'index']);
     Route::get('/blood-requests/{bloodRequest}', [AdminBloodRequestController::class, 'show']);
-    Route::put('/blood-requests/{bloodRequest}', [AdminBloodRequestController::class, 'update']);
+    Route::post('/blood-requests/{bloodRequest}', [AdminBloodRequestController::class, 'update']);
     Route::delete('/blood-requests/{bloodRequest}', [AdminBloodRequestController::class, 'destroy']);
     Route::post('/blood-requests/{bloodRequest}/assign', [AdminBloodRequestController::class, 'assign']);
 
     // Volunteers
     Route::get('/volunteers', [VolunteerController::class, 'index']);
     Route::get('/volunteers/{volunteer}', [VolunteerController::class, 'show']);
-    Route::put('/volunteers/{volunteer}', [VolunteerController::class, 'update']);
+    Route::post('/volunteers/{volunteer}', [VolunteerController::class, 'update']);
     Route::delete('/volunteers/{volunteer}', [VolunteerController::class, 'destroy']);
 
     // Contact Messages
     Route::get('/contact-messages', [AdminContactController::class, 'index']);
     Route::get('/contact-messages/{contactMessage}', [AdminContactController::class, 'show']);
-    Route::put('/contact-messages/{contactMessage}', [AdminContactController::class, 'update']);
+    Route::post('/contact-messages/{contactMessage}', [AdminContactController::class, 'update']);
     Route::delete('/contact-messages/{contactMessage}', [AdminContactController::class, 'destroy']);
 
     // Users
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/users', [UserController::class, 'store']);
     Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::post('/users/{user}', [UserController::class, 'update']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
 
     // Roles
     Route::get('/roles', [RoleController::class, 'index']);
     Route::post('/roles', [RoleController::class, 'store']);
     Route::get('/roles/{role}', [RoleController::class, 'show']);
-    Route::put('/roles/{role}', [RoleController::class, 'update']);
+    Route::post('/roles/{role}', [RoleController::class, 'update']);
     Route::delete('/roles/{role}', [RoleController::class, 'destroy']);
 
     // Activity Logs
@@ -206,20 +206,20 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::get('/donations', [DonationController::class, 'index']);
     Route::post('/donations', [DonationController::class, 'store']);
     Route::get('/donations/{donation}', [DonationController::class, 'show']);
-    Route::put('/donations/{donation}', [DonationController::class, 'update']);
+    Route::post('/donations/{donation}', [DonationController::class, 'update']);
     Route::delete('/donations/{donation}', [DonationController::class, 'destroy']);
 
     // Gallery Categories
     Route::get('/gallery-categories', [GalleryCategoryController::class, 'index']);
     Route::post('/gallery-categories', [GalleryCategoryController::class, 'store']);
     Route::get('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'show']);
-    Route::put('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'update']);
+    Route::post('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'update']);
     Route::delete('/gallery-categories/{galleryCategory}', [GalleryCategoryController::class, 'destroy']);
 
     // Banners
     Route::get('/banners', [BannerController::class, 'index']);
     Route::post('/banners', [BannerController::class, 'store']);
     Route::get('/banners/{banner}', [BannerController::class, 'show']);
-    Route::put('/banners/{banner}', [BannerController::class, 'update']);
+    Route::post('/banners/{banner}', [BannerController::class, 'update']);
     Route::delete('/banners/{banner}', [BannerController::class, 'destroy']);
 });

@@ -17,7 +17,7 @@ export default function EventsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/events/${editing.id}`, form);
+    if (editing) await api.post(`/admin/events/${editing.id}`, form);
     else await api.post('/admin/events', form);
     setShowModal(false);
     load();

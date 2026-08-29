@@ -22,7 +22,7 @@ export default function RoleForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) await api.put(`/admin/roles/${id}`, form);
+    if (id) await api.post(`/admin/roles/${id}`, form);
     else await api.post('/admin/roles', form);
     navigate('/admin/roles');
   };

@@ -18,7 +18,7 @@ export default function MyProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put('/users/me', user);
+    await api.post('/users/me', user);
     setSaved(true);
   };
 

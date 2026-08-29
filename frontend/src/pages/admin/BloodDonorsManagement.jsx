@@ -16,7 +16,7 @@ export default function BloodDonorsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/blood-donors/${editing.id}`, form);
+    if (editing) await api.post(`/admin/blood-donors/${editing.id}`, form);
     else await api.post('/admin/blood-donors', form);
     setShowModal(false);
     load();

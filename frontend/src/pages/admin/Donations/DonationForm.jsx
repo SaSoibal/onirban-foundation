@@ -20,7 +20,7 @@ export default function DonationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) await api.put(`/admin/donations/${id}`, form);
+    if (id) await api.post(`/admin/donations/${id}`, form);
     else await api.post('/admin/donations', form);
     navigate('/admin/donations');
   };

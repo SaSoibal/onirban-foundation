@@ -15,7 +15,7 @@ export default function DonationsList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/donations/${editing.id}`, form);
+    if (editing) await api.post(`/admin/donations/${editing.id}`, form);
     else await api.post('/admin/donations', form);
     setShowModal(false);
     load();

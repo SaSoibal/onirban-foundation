@@ -17,7 +17,7 @@ export default function ProgramsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/programs/${editing.id}`, form);
+    if (editing) await api.post(`/admin/programs/${editing.id}`, form);
     else await api.post('/admin/programs', form);
     setShowModal(false);
     load();

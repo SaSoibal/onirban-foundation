@@ -16,7 +16,7 @@ export default function TestimonialsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/testimonials/${editing.id}`, form);
+    if (editing) await api.post(`/admin/testimonials/${editing.id}`, form);
     else await api.post('/admin/testimonials', form);
     setShowModal(false);
     load();

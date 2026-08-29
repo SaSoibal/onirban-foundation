@@ -16,7 +16,7 @@ export default function SeoSettings() {
   };
 
   const handleSave = async () => {
-    await api.put(`/admin/settings/${editing.key}`, { value });
+    await api.post(`/admin/settings/${editing.key}`, { value });
     setEditing(null);
     setValue('');
     load();

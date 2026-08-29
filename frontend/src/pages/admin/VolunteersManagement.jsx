@@ -15,7 +15,7 @@ export default function VolunteersManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put(`/admin/volunteers/${editing.id}`, form);
+    await api.post(`/admin/volunteers/${editing.id}`, form);
     setShowModal(false);
     load();
   };

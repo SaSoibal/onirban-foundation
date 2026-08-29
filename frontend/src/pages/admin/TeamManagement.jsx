@@ -17,7 +17,7 @@ export default function TeamManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/team/${editing.id}`, form);
+    if (editing) await api.post(`/admin/team/${editing.id}`, form);
     else await api.post('/admin/team', form);
     setShowModal(false);
     load();

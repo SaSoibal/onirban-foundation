@@ -20,7 +20,7 @@ export default function SettingsManagement() {
   };
 
   const handleSave = async () => {
-    await api.put(`/admin/settings/${editing.key}`, { value });
+    await api.post(`/admin/settings/${editing.key}`, { value });
     setEditing(null);
     setValue('');
     api.get(`/admin/settings?group=${group}`).then((res) => setSettings(res.data.data));

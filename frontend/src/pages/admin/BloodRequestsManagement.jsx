@@ -15,7 +15,7 @@ export default function BloodRequestsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put(`/admin/blood-requests/${editing.id}`, form);
+    await api.post(`/admin/blood-requests/${editing.id}`, form);
     setShowModal(false);
     load();
   };

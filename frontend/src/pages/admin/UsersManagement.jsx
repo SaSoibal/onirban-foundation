@@ -16,7 +16,7 @@ export default function UsersManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/users/${editing.id}`, form);
+    if (editing) await api.post(`/admin/users/${editing.id}`, form);
     else await api.post('/admin/users', form);
     setShowModal(false);
     load();

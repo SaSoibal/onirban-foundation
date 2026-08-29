@@ -15,7 +15,7 @@ export default function ContactsManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put(`/admin/contact-messages/${editing.id}`, form);
+    await api.post(`/admin/contact-messages/${editing.id}`, form);
     setShowModal(false);
     load();
   };

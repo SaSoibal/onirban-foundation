@@ -17,7 +17,7 @@ export default function GalleryManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/gallery/${editing.id}`, form);
+    if (editing) await api.post(`/admin/gallery/${editing.id}`, form);
     else await api.post('/admin/gallery', form);
     setShowModal(false);
     load();

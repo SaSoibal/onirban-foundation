@@ -18,7 +18,7 @@ export default function RolesList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/roles/${editing.id}`, form);
+    if (editing) await api.post(`/admin/roles/${editing.id}`, form);
     else await api.post('/admin/roles', form);
     setShowModal(false);
     loadRoles();

@@ -16,7 +16,7 @@ export default function CategoriesList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/gallery-categories/${editing.id}`, form);
+    if (editing) await api.post(`/admin/gallery-categories/${editing.id}`, form);
     else await api.post('/admin/gallery-categories', form);
     setShowModal(false);
     load();

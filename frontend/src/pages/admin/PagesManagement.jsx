@@ -16,7 +16,7 @@ export default function PagesManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editing) await api.put(`/admin/pages/${editing.id}`, form);
+    if (editing) await api.post(`/admin/pages/${editing.id}`, form);
     else await api.post('/admin/pages', form);
     setShowModal(false);
     load();

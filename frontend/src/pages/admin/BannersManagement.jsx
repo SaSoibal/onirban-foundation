@@ -39,7 +39,7 @@ export default function BannersManagement() {
     }
 
     if (editing) {
-      await api.put(`/admin/banners/${editing.id}`, formData, {
+      await api.post(`/admin/banners/${editing.id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
     } else {

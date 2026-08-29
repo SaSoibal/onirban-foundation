@@ -20,7 +20,7 @@ export default function CategoryForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) await api.put(`/admin/gallery-categories/${id}`, form);
+    if (id) await api.post(`/admin/gallery-categories/${id}`, form);
     else await api.post('/admin/gallery-categories', form);
     navigate('/admin/gallery-categories');
   };
