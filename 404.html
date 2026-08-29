@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Onirban Foundation</title>
+    <script type="text/javascript">
+      (function() {
+        var path = window.location.pathname;
+        var base = '/onirban-foundation';
+        var relative = path.replace(base, '') || '/';
+        var clean = relative.replace(/^\//, '');
+        window.location.replace(base + '/#' + clean);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
