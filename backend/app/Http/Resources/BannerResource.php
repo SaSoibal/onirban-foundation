@@ -32,7 +32,7 @@ class BannerResource extends JsonResource
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'image_path' => $this->image_path,
-            'image_url' => $this->image_path ? Storage::url($this->image_path) : null,
+            'image_url' => $this->image_path ? url("/api/banners/{$this->id}/image") : null,
             'link_url' => $this->link_url,
             'button_text' => $this->button_text,
             'sort_order' => $this->sort_order,

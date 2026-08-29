@@ -62,6 +62,7 @@ Route::get('/events/{slug}', [EventController::class, 'show']);
 Route::get('/testimonials', [TestimonialController::class, 'index']);
 
 Route::get('/banners', [PublicBannerController::class, 'index']);
+Route::get('/banners/{banner}/image', [BannerController::class, 'showImage']);
 
 Route::get('/blood-donors', [BloodDonorController::class, 'index']);
 Route::get('/blood-donors/eligible', [BloodDonorController::class, 'eligible']);

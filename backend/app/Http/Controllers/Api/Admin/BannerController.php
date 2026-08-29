@@ -80,6 +80,17 @@ class BannerController extends Controller
         ]);
     }
 
+    public function showImage(Banner $banner)
+    {
+        $path = storage_path('app/public/' . $banner->image_path);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path);
+    }
+
     public function update(Request $request, Banner $banner)
     {
         Log::info('Banner update', [
