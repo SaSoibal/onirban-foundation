@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BannerResource;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -33,6 +35,12 @@ class BannerController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Banner store', [
+            'has_file' => $request->hasFile('image'),
+            'all_files' => $request->allFiles(),
+            'input' => $request->except('image'),
+        ]);
+
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'subtitle' => ['nullable', 'string', 'max:500'],
@@ -45,7 +53,13 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('banners', 'public');
+            try {
+                $path = $request->file('image')->store('banners', 'public');
+                $data['image_path'] = $path;
+                Log::info('Banner image stored', ['path' => $path]);
+            } catch (\Exception $e) {
+                Log::error('Banner image store failed', ['error' => $e->getMessage()]);
+            }
         }
 
         $data['created_by'] = $request->user()->id;
@@ -69,6 +83,13 @@ class BannerController extends Controller
 
     public function update(Request $request, Banner $banner)
     {
+        Log::info('Banner update', [
+            'id' => $banner->id,
+            'has_file' => $request->hasFile('image'),
+            'all_files' => $request->allFiles(),
+            'input' => $request->except('image'),
+        ]);
+
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'subtitle' => ['nullable', 'string', 'max:500'],
@@ -81,7 +102,13 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('banners', 'public');
+            try {
+                $path = $request->file('image')->store('banners', 'public');
+                $data['image_path'] = $path;
+                Log::info('Banner image stored on update', ['path' => $path]);
+            } catch (\Exception $e) {
+                Log::error('Banner image store failed on update', ['error' => $e->getMessage()]);
+            }
         } else {
             $data['image_path'] = $banner->image_path;
         }
