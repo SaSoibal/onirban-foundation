@@ -82,6 +82,8 @@ class BannerController extends Controller
 
         if ($request->hasFile('image')) {
             $data['image_path'] = $request->file('image')->store('banners', 'public');
+        } else {
+            $data['image_path'] = $banner->image_path;
         }
 
         $data['updated_by'] = $request->user()->id;
